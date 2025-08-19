@@ -26,3 +26,11 @@
         .premium-button:hover {
             transform: scale(1.03);
         }
+        img{
+            
+            height: 3rem; /* Ajusta la altura según necesites */
+            width: auto; /* Mantiene la proporción */
+            vertical-align: middle; /* Alinea verticalmente con el texto */
+            display: inline-block; /* Asegura que se comporte como un bloque en línea */
+}
+        
