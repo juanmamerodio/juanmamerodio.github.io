@@ -1,80 +1,28 @@
-
-        :root {
-            --bg-main: #EFE4D2;
-            --bg-section: #FFFFFF;
-            --text-main: #131D4F;
-            --text-secondary: #254D70;
-            --cta-terracotta: #954C2E;
-            --cta-terracotta-hover: #7f4126;
-        }
-        .fade-in { opacity: 0; animation: fadeIn 1.5s ease-in-out forwards; }
-      .fade-in-delay-1 { animation-delay: 0.2s; }
-      .fade-in-delay-2 { animation-delay: 0.4s; }
-      .fade-in-delay-3 { animation-delay: 0.6s; }
-      .fade-in-delay-4 { animation-delay: 0.8s; }
-
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-
-      .scale-in {
-        opacity: 0;
-        transform: scale(0.95);
-        animation: scaleIn 0.8s ease-out forwards;
-      }
-
-      @keyframes scaleIn {
-        to { opacity: 1; transform: scale(1); }
-      }
-
-      .slide-up {
-        opacity: 0;
-        animation: slideUp 1s ease forwards;
-      }
-
-      @keyframes slideUp {
-        from { transform: translateY(50px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
-      }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-main);
-        }
-        f{
+            /* This font stack prioritizes Apple's system font (San Francisco) and provides fallbacks for other systems, mimicking the iOS look. */
             font-family: "Poppins";
-            color: var(--cta-terracotta);
+            background-color: #fbfbfb; /* A slightly off-white for a softer feel */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        .hero-text {
-            color: var(--text-main);
+        .text-gradient {
+            background: linear-gradient(90deg, #FDB813, #F9A825); /* Softer, more golden gradient */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
         }
-
-        .cta-button {
-            background-color: var(--cta-terracotta);
-            color: var(--bg-main);
-            transition: background-color 0.3s ease;
+        .card-hover-effect {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
-        .cta-button:hover {
-            background-color: var(--cta-terracotta-hover);
+        .card-hover-effect:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
         }
-        
-        .text-secondary-theme {
-            color: var(--text-secondary);
+        .premium-button {
+            transition: transform 0.2s ease-out, background-color 0.3s;
         }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-main);
+        .premium-button:hover {
+            transform: scale(1.03);
         }
-        f{
-            font-family: "Poppins";
-            color: var(--cta-terracotta);
-        }
-        h2,h3{
-            font-family: "Poppins";
-        }
-        section{
-            border-radius: 22px;
-        }
-        

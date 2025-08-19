@@ -1,111 +1,197 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
-    <link rel="stylesheet" href="style.css">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="DeltaLogo.png">
-    <title>Juanmamerodio | Experto en Crecimiento</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    
-    
-</head>
-<body class="antialiased">
+    <title>Delta - Agencia de Diseño Web y Marketing Digital</title>
+    <link rel="icon" href="icon.png">   
 
-    <header class="text-center py-20 md:py-32 px-4">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="text-7xl md:text-6xl font-extrabold tracking-tight">
-                Marketing que Convierte. <f>Ventas que Escalan.</f>
-            </h1>
-            <p class="mt-6 text-lg md:text-xl max-w-2xl mx-auto text-secondary-theme">
-                Te ayudo a escalar tu negocio a <f>+$7,000/mes</f> con estrategias orgánicas, contenido Insight y embudos que funcionan. Sin invertir en publicidad.
-            </p>
-            <div class="mt-8 flex justify-center">
-                <a href="https://calendly.com/delta-growth-agency/llamada-larga-consultas" target="_blank" class="cta-button font-bold py-3 px-8 rounded-full text-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
-                    Agendá tu Llamada Estratégica
-                </a>
-            </div>
-            <p class="mt-4 text-sm" style="color: rgba(19, 29, 79, 0.6);">Llamada 100% gratuita y sin compromiso.</p>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body class="text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white/90 backdrop-blur-lg fixed w-full z-50 top-0 border-b border-gray-200">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gradient">Delta</a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#inicio" class="text-gray-600 hover:text-amber-500 transition-colors duration-300 font-medium">Inicio</a>
+                <a href="#nosotros" class="text-gray-600 hover:text-amber-500 transition-colors duration-300 font-medium">Nosotros</a>
+                <a href="#planes" class="text-gray-600 hover:text-amber-500 transition-colors duration-300 font-medium">Planes</a>
+                <a href="#contacto" class="bg-black text-white font-semibold py-2 px-5 rounded-full hover:bg-gray-800 transition-colors duration-300">Contacto</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-2xl text-gray-800">☰</button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <a href="#inicio" class="block text-center py-3 px-4 hover:bg-gray-50 font-medium">Inicio</a>
+            <a href="#nosotros" class="block text-center py-3 px-4 hover:bg-gray-50 font-medium">Nosotros</a>
+            <a href="#planes" class="block text-center py-3 px-4 hover:bg-gray-50 font-medium">Planes</a>
+            <a href="#contacto" class="block text-center py-4 px-4 bg-black text-white font-semibold hover:bg-gray-800">Contacto</a>
         </div>
     </header>
-    <section class="py-20 px-4">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center">
-                <h2 class="text-4xl md:text-3xl font-extrabold">Mi Método: <f>Tu Atajo al Crecimiento</f></h2>
-                <p class="mt-4 text-lg text-secondary-theme max-w-2xl mx-auto">He perfeccionado un sistema de 3 pasos para llevar tu negocio al siguiente nivel de forma predecible.</p>
-            </div>
-            <div class="mt-16 grid md:grid-cols-3 gap-8 md:gap-12 text-center">
-                <div class="p-8 rounded-2xl shadow-lg" style="background-color: var(--bg-section);">
-                    <div class="text-4xl font-bold mb-4" style="color: var(--cta-terracotta);">01</div>
-                    <h3 class="text-xl font-semibold mb-2">Contenido Insight</h3>
-                    <p class="text-secondary-theme">Creamos el mejor contenido de nicho que atrae a prospectos que te puedan pagar mas de $1k por tu producto/servicio</p>
-                </div>
-                <div class="p-8 rounded-2xl shadow-lg" style="background-color: var(--bg-section);">
-                    <div class="text-4xl font-bold mb-4" style="color: var(--cta-terracotta);">02</div>
-                    <h3 class="text-xl font-semibold mb-2">Embudos Evergreen</h3>
-                    <p class="text-secondary-theme">Los prospectos responderan un Lead-Magnet, para que despues de concientizarlos de su problema, settearlos a una llamada de ventas.</p>
-                </div>
-                <div class="p-8 rounded-2xl shadow-lg" style="background-color: var(--bg-section);">
-                    <div class="text-4xl font-bold mb-4" style="color: var(--cta-terracotta);">03</div>
-                    <h3 class="text-xl font-semibold mb-2">Onion Offer</h3>
-                    <p class="text-secondary-theme">Creamos una oferta que contenga diferentes niveles de acceso a tu negocio, asi la carga operativa es menor.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="py-20 px-4" style="background-color: var(--bg-section);">
-        <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-8 items-center">
-            <div class="md:col-span-1 flex justify-center">
-                <img src="portrait.jpg" alt="Foto de Juan Manuel Merodio" class="rounded-full w-52 h-52 md:w-64 md:h-64 object-cover border-4" style="border-color: var(--bg-main);">
-            </div>
-            <div class="md:col-span-2">
-                <h2 class="text-3xl font-bold mb-4">Mi nombre es:<br><f>Juan Manuel Merodio</f>.</h2>
-                <div class="space-y-4 text-secondary-theme">
-                    <p>Hace 2 años descubrí el marketing digital y me obsesioné. Me especialicé en Appointment Setting y formé a más de 100 alumnos, pero mi verdadera pasión es crear sistemas que generan resultados masivos.</p>
-                    <p>Despues de viralizar contenido en TikTok, ayudé a la gente a poder viralizarse. Hoy me dedico a escalar a infoproductores a +$7k/mes en 1 mes con mi sistema de ventas.</p>
+    <main>
+        <!-- Hero Section -->
+        <section id="inicio" class="min-h-screen flex items-center bg-white pt-24 md:pt-20">
+            <div class="container mx-auto px-6 text-center">
+                <div data-aos="fade-up">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-5">
+                        Diseño de Clase Mundial. <br class="hidden md:block"> Para Negocios de <span class="text-gradient">Campana</span>.
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-10 font-light">
+                        Somos la agencia ícono en Campana. Traemos e incorporamos en tu negocio el diseño web de EE.UU y la combinamos con embudos de venta Evergreen y automatización IA para escalar tu negocio.
+                    </p>
+                    <a href="#planes" class="bg-amber-400 text-black font-semibold py-4 px-10 rounded-full text-lg premium-button inline-block shadow-lg shadow-amber-400/30 hover:bg-amber-500">
+                        Descubre Nuestros Planes
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <section class="py-20 px-4">
-        <div class="max-w-4xl mx-auto text-center">
-             <h2 class="text-3xl md:text-4xl font-bold">Resultados Reales de mis clientes</h2>
-             <p class="mt-4 text-lg text-secondary-theme">Esto no es teoría, es lo que mis clientes están logrando.</p>
-             <div class="mt-12 grid md:grid-cols-2 gap-8 text-left">
-                 <div class="p-6 rounded-xl shadow-lg" style="background-color: var(--bg-section);">
-                     <p class="text-secondary-theme">"Estaba re mal, sabia mucho, pero nunca actuaba. Con Juanma monetizé mi audiencia y  mi conocimiento y ahora tengo un flujo constante de clientes y superé los $5,000/mes. Increíblemente masivoo"</p>
-                     <div class="mt-4 font-bold">- Testimonio #15</div>
-                     <div class="text-sm font-semibold" style="color: var(--cta-terracotta);">Ciro - CEO de UPEM</div>
-                 </div>
-                 <div class="p-6 rounded-xl shadow-lg" style="background-color: var(--bg-section);">
-                     <p class="text-secondary-theme">"A ver, estoy super satisfecho con sus servicios, porque entendí que la viralidad no es sinonimo de plata, es sinonimo de leads PODRIDOS, Juanma gracias por brindarme todo este conocimiento. No lo duden.."</p>
-                     <div class="mt-4 font-bold">- Testimonio #22</div>
-                     <div class="text-sm font-semibold" style="color: var(--cta-terracotta);">Tomi Drago - Content Specialist</div>
-                 </div>
-             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="py-20 px-4 text-center" style="background-color: var(--bg-section);">
-        <div class="max-w-2xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold">Dejame decirte que solo no vas a llegar a <f>ningun lado</f></h2>
-            <p class="mt-4 text-lg text-secondary-theme">Agendá una llamada gratuita conmigo y te daré un plan de acción claro para que alcances tus metas de facturación en los próximos 90 días.</p>
-            <div class="mt-8">
-                 <a href="https://calendly.com/delta-growth-agency/llamada-larga-consultas" target="_blank" class="cta-button font-bold py-4 px-10 rounded-full text-xl shadow-lg transform hover:scale-105 transition-transform duration-300">
-                    ¡Quiero Escalar Mi Negocio!
+        <!-- About Us Section -->
+        <section id="nosotros" class="py-24 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-5xl font-bold text-gray-900">Pioneros en <span class="text-gradient">Marketing Digital</span></h2>
+                    <p class="text-lg text-gray-600 mt-5 max-w-2xl mx-auto font-light">Maximizamos tus conversiones con tráfico destinado a landings de alta confianza.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-10 text-center">
+                    <div data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-white p-8 rounded-2xl shadow-sm">
+                            <svg class="w-12 h-12 mx-auto text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.657 7.343A8 8 0 0117.657 18.657z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1014.12 11.88l-4.242 4.242z"></path></svg>
+                            <h3 class="text-xl font-semibold mt-5 text-gray-900">Diseño de Vanguardia</h3>
+                            <p class="text-gray-600 mt-2 font-light">Tecnología y estética importada directamente de los líderes del mercado en EE.UU.</p>
+                        </div>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="200">
+                         <div class="bg-white p-8 rounded-2xl shadow-sm">
+                            <svg class="w-12 h-12 mx-auto text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            <h3 class="text-xl font-semibold mt-5 text-gray-900">Embudos Evergreen</h3>
+                            <p class="text-gray-600 mt-2 font-light">Sistemas de captación y conversión que trabajan para ti 24/7, de forma automática.</p>
+                        </div>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="300">
+                         <div class="bg-white p-8 rounded-2xl shadow-sm">
+                            <svg class="w-12 h-12 mx-auto text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                            <h3 class="text-xl font-semibold mt-5 text-gray-900">Automatización con IA</h3>
+                            <p class="text-gray-600 mt-2 font-light">Conversaciones inteligentes que guían a tus clientes, aumentando la confianza y las ventas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Plans Section -->
+        <section id="planes" class="py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-5xl font-bold text-gray-900">Planes Diseñados para <span class="text-gradient">Tu Crecimiento</span></h2>
+                    <p class="text-lg text-gray-600 mt-5 max-w-2xl mx-auto font-light">Desde validar tu idea hasta dominar el mercado, tenemos el plan perfecto para ti.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-start">
+                    
+                    <!-- Plan Tink -->
+                    <div class="bg-gray-50/70 p-8 rounded-2xl border border-gray-200 card-hover-effect" data-aos="fade-up" data-aos-delay="100">
+                        <h3 class="text-2xl font-bold text-amber-500">Plan Tink</h3>
+                        <p class="text-4xl font-bold my-4 text-gray-900">$120</p>
+                        <p class="text-gray-600 mb-6 font-light">Ideal para quienes recién empiezan su presencia online.</p>
+                        <ul class="space-y-3 text-gray-700 font-light">
+                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Landing Page optimizada.</li>
+                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Dominio gratuito con subdominio.</li>
+                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Personalización básica.</li>
+                        </ul>
+                        <button class="w-full mt-8 bg-white text-black border border-gray-300 font-semibold py-3 px-6 rounded-full hover:bg-gray-100 transition-colors duration-300">Comenzar</button>
+                    </div>
+
+                    <!-- Plan Ding -->
+                    <div class="bg-gray-50/70 p-8 rounded-2xl border border-gray-200 card-hover-effect" data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="text-2xl font-bold text-amber-500">Plan Ding</h3>
+                        <p class="text-4xl font-bold my-4 text-gray-900">$170</p>
+                        <p class="text-gray-600 mb-6 font-light">Más impacto y mayor profesionalismo.</p>
+                        <ul class="space-y-3 text-gray-700 font-light">
+                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Todo lo del Plan Tink +</li>
+                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Dominio propio .shop.</li>
+                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Personalización avanzada.</li>
+                        </ul>
+                        <button class="w-full mt-8 bg-white text-black border border-gray-300 font-semibold py-3 px-6 rounded-full hover:bg-gray-100 transition-colors duration-300">Comenzar</button>
+                    </div>
+
+                    <!-- Plan Dong (Most Popular) -->
+                    <div class="bg-black text-white p-8 rounded-2xl relative card-hover-effect shadow-2xl shadow-gray-300" data-aos="fade-up" data-aos-delay="300">
+                        <span class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-amber-400 text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Más Popular</span>
+                        <h3 class="text-2xl font-bold text-amber-400">Plan Dong</h3>
+                        <p class="text-4xl font-bold my-4">$250</p>
+                        <p class="text-gray-300 mb-6 font-light">Tu negocio empieza a escalar.</p>
+                        <ul class="space-y-3 font-light">
+                            <li class="flex items-center"><span class="text-green-400 mr-3">✓</span> Todo lo del Plan Ding +</li>
+                            <li class="flex items-center"><span class="text-green-400 mr-3">✓</span> Integración con redes sociales.</li>
+                            <li class="flex items-center"><span class="text-green-400 mr-3">✓</span> Automatización de mensajes.</li>
+                            <li class="flex items-center"><span class="text-green-400 mr-3">✓</span> Embudo de ventas evergreen.</li>
+                            <li class="flex items-center"><span class="text-green-400 mr-3">✓</span> Dominio a elección (.com, .net).</li>
+                            <li class="flex items-center"><span class="text-green-400 mr-3">✓</span> Landing Page premium.</li>
+                        </ul>
+                        <button class="w-full mt-8 bg-amber-400 text-black font-bold py-3 px-6 rounded-full hover:bg-amber-500 transition-colors duration-300 premium-button">Comenzar</button>
+                    </div>
+
+                    <!-- Plan Bong -->
+                    <div class="bg-gray-50/70 p-8 rounded-2xl border border-gray-200 card-hover-effect" data-aos="fade-up" data-aos-delay="400">
+                        <h3 class="text-2xl font-bold text-amber-500">Plan Bong</h3>
+                        <p class="text-4xl font-bold my-4 text-gray-900">$350</p>
+                        <p class="text-gray-600 mb-6 font-light">La experiencia completa y soporte premium.</p>
+                        <ul class="space-y-3 text-gray-700 font-light">
+                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Todo lo del Plan Dong +</li>
+                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Sitio web completo (5 págs).</li>
+                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Atención exclusiva y soporte 24/7.</li>
+                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Mantenimiento continuo.</li>
+                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Escalado de redes sociales.</li>
+                        </ul>
+                        <button class="w-full mt-8 bg-white text-black border border-gray-300 font-semibold py-3 px-6 rounded-full hover:bg-gray-100 transition-colors duration-300">Comenzar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="contacto" class="bg-gray-50 border-t border-gray-200">
+        <div class="container mx-auto px-6 py-16 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-aos="fade-up">¿Listo para llevar tu negocio al <span class="text-gradient">siguiente nivel</span>?</h2>
+            <p class="text-lg text-gray-600 mb-10 font-light" data-aos="fade-up" data-aos-delay="100">Contáctanos hoy y empecemos a construir tu futuro digital.</p>
+            <div data-aos="fade-up" data-aos-delay="200">
+                <a href="https://wa.me/3489524105?text=Quiero%20mi%20pagina%20web%20DELTA%20!
+                " class="bg-amber-400 text-black font-semibold py-4 px-10 rounded-full text-lg premium-button inline-block shadow-lg shadow-amber-400/30 hover:bg-amber-500">
+                    Hablemos
                 </a>
             </div>
+            <p class="text-gray-500 mt-16 text-sm font-light">&copy; 2024 Delta Agencia. Todos los derechos reservados. Campana, Buenos Aires.</p>
         </div>
-    </section>
-
-    <footer class="text-center py-8 px-4 border-t" style="border-color: rgba(0,0,0,0.1);">
-        <p style="color: rgba(19, 29, 79, 0.6);">&copy; <span id="year"></span> Juan Manuel Merodio. Todos los derechos reservados.</p>
     </footer>
-    <script src="script.js"></script>
+
+
+    <!-- AOS (Animate On Scroll) Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50,
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
 </body>
 </html>
