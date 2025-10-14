@@ -1,270 +1,477 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delta - Agencia de Diseño Web y Marketing Digital</title>
-    <link rel="icon" href="icon.png">   
+    <title>Ascender - Tu Marca Personal a +10k/mes</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="text-gray-800">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
 
-    <!-- Header -->
-    <header class="bg-white/90 backdrop-blur-lg fixed w-full z-50 top-0 border-b border-gray-200">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-gradient"><img src="icon.png" alt="icon"><span class="text-gradient">Delta</span></a>
-            <nav class="hidden md:flex space-x-8 items-center">
-                <a href="#inicio" class="text-gray-600 hover:text-amber-500 transition-colors duration-300 font-medium">Inicio</a>
-                <a href="#nosotros" class="text-gray-600 hover:text-amber-500 transition-colors duration-300 font-medium">Nosotros</a>
-                <a href="#planes" class="text-gray-600 hover:text-amber-500 transition-colors duration-300 font-medium">Planes</a>
-                <a href="#contacto" class="bg-black text-white font-semibold py-2 px-5 rounded-full hover:bg-gray-800 transition-colors duration-300">Contacto</a>
-            </nav>
-            <button id="mobile-menu-button" class="md:hidden text-2xl text-gray-800">☰</button>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
-            <a href="#inicio" class="block text-center py-3 px-4 hover:bg-gray-50 font-medium">Inicio</a>
-            <a href="#nosotros" class="block text-center py-3 px-4 hover:bg-gray-50 font-medium">Nosotros</a>
-            <a href="#planes" class="block text-center py-3 px-4 hover:bg-gray-50 font-medium">Planes</a>
-            <a href="#contacto" class="block text-center py-4 px-4 bg-black text-white font-semibold hover:bg-gray-800">Contacto</a>
+    <style>
+        /* Estilos personalizados para complementar Tailwind */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8; /* Blanco levemente cálido */
+            color: #1a202c;
+        }
+
+        /* Colores personalizados de la marca */
+        .brand-green { color: #2E4B43; }
+        .bg-brand-green { background-color: #2E4B43; }
+        .border-brand-green { border-color: #2E4B43; }
+        .hover\:bg-brand-green-dark:hover { background-color: #243a34; }
+
+        /* Estilo para el VSL con aspecto profesional */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 1.5rem; /* Bordes redondeados consistentes */
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Animaciones de entrada */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Estilo para acordeón de FAQ y Módulos */
+        .accordion-item-header {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .accordion-item-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+        }
+        .accordion-item.active .accordion-item-body {
+            max-height: 1000px; /* Suficientemente grande */
+            transition: max-height 1s ease-in-out;
+        }
+        .accordion-item.active .accordion-icon {
+            transform: rotate(45deg);
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- ========== HEADER ========== -->
+    <header class="sticky top-0 z-50 bg-[#FDFBF8]/80 backdrop-blur-lg border-b border-gray-200/50">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center space-x-2">
+                    <img class="h-8 w-auto" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0zMC43Njk1IDY5LjIzMDlMMzAuNzY5NSA4NC42MTU1SDM4LjQ2MThMNzYuOTIzMyAyMy4wNzcxVjcuNjkxNDFIMzAuNzY5NVYyMy4wNzcxSDU5LjQzNzlMMzAuNzY5NSA2MS41Mzg2VjY5LjIzMDlaIiBmaWxsPSIjMkU0QjQzIi8+Cjwvc3ZnPgo=" alt="Logo Ascender">
+                    <span class="text-2xl font-bold brand-green">Ascender</span>
+                </a>
+                <!-- CTA Button -->
+                <a href="#precio" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-full hover:bg-brand-green-dark transition-colors duration-300 shadow-lg shadow-green-900/20">
+                    Reservar Ahora
+                </a>
+            </div>
         </div>
     </header>
 
+    <!-- ========== MAIN CONTENT ========== -->
     <main>
-        <!-- Hero Section -->
-        <section id="inicio" class="min-h-screen flex items-center bg-white pt-24 md:pt-20">
-            <div class="container mx-auto px-6 text-center">
-                <div data-aos="fade-up">
-                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-5">
-                        Paginas Web. <br class="hidden md:block"> Para Negocios de <span class="text-gradient">Campana</span>.
+
+        <!-- ========== HERO SECTION ========== -->
+        <section class="py-20 md:py-32">
+            <div class="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
+                <div class="reveal">
+                    <h1 class="text-4xl md:text-6xl font-extrabold brand-green leading-tight tracking-tighter">
+                        Transforma tu Conocimiento en Ingresos.
+                        <span class="block bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-green-800">Escala tu Marca Personal a +10k/mes.</span>
                     </h1>
-                    <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-10 font-light">
-                        Somos la agencia de Paginas Web ícono en Campana. Traemos e incorporamos en tu negocio el diseño web de EE.UU y la combinamos con embudos de venta Evergreen y automatización IA para escalar tu negocio.
+                    <p class="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-gray-600">
+                        "Ascender" es la guía definitiva que te llevará paso a paso para crear, crecer y monetizar tu pasión, convirtiéndola en un negocio rentable y sostenible.
                     </p>
-                    <a href="#planes" class="bg-amber-400 text-black font-semibold py-4 px-10 rounded-full text-lg premium-button inline-block shadow-lg shadow-amber-400/30 hover:bg-amber-500">
-                        Descubre Nuestros Planes
+                </div>
+                
+                <div class="mt-12 max-w-4xl mx-auto reveal" style="transition-delay: 200ms;">
+                     <div class="video-container">
+                        <!-- Reemplazar con el ID de tu video de YouTube/Vimeo -->
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video Sales Letter" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <div class="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 reveal" style="transition-delay: 400ms;">
+                    <a href="#precio" class="w-full sm:w-auto bg-brand-green text-white font-bold text-lg px-10 py-5 rounded-full hover:bg-brand-green-dark transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-green-900/30">
+                        SÍ, QUIERO RESERVAR MI LUGAR
+                    </a>
+                    <a href="#" class="w-full sm:w-auto bg-gray-200/80 text-gray-800 font-semibold px-8 py-4 rounded-full hover:bg-gray-300/80 transition-colors duration-300">
+                        Ver Preview
                     </a>
                 </div>
+                <p class="mt-4 text-sm text-gray-500 font-medium reveal" style="transition-delay: 500ms;">Lanzamiento oficial de la camada: 1 de Noviembre.</p>
             </div>
         </section>
 
-        <!-- About Us Section -->
-        <section id="nosotros" class="py-24 bg-gray-50">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16" data-aos="fade-up">
-                    <h2 class="text-3xl md:text-5xl font-bold text-gray-900">Pioneros en <span class="text-gradient">Marketing Digital</span></h2>
-                    <p class="text-lg text-gray-600 mt-5 max-w-2x2 mx-auto font-light">Aumentamos tus interacciones y redirijimos el trafico hacia tu proxima web.</p>
+        <!-- ========== BONUSES / WHAT YOU GET SECTION ========== -->
+        <section id="beneficios" class="py-20 md:py-28 bg-white rounded-t-3xl md:rounded-t-[4rem]">
+            <div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
+                <div class="text-center max-w-3xl mx-auto reveal">
+                    <h2 class="text-3xl md:text-5xl font-bold brand-green">Todo lo que obtienes con Ascender</h2>
+                    <p class="mt-4 text-lg text-gray-600">Recibirás acceso a un ecosistema completo de herramientas, conocimiento y comunidad valorado en más de $870 USD. Todo diseñado para tu éxito.</p>
                 </div>
-                <div class="grid md:grid-cols-3 gap-10 text-center">
-                    <div data-aos="fade-up" data-aos-delay="100">
-                        <div class="bg-white p-8 rounded-2xl shadow-sm">
-                            <svg class="w-12 h-12 mx-auto text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.657 7.343A8 8 0 0117.657 18.657z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1014.12 11.88l-4.242 4.242z"></path></svg>
-                            <h3 class="text-xl font-semibold mt-5 text-gray-900">Diseño Importado</h3>
-                            <p class="text-gray-600 mt-2 font-light">Tecnología y estética importada directamente de los líderes del mercado en EE.UU.</p>
+
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Bonus Card 1 -->
+                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/80 reveal">
+                        <div class="flex items-center justify-center h-16 w-16 bg-green-100 rounded-2xl">
+                            <i data-feather="users" class="brand-green"></i>
                         </div>
+                        <h3 class="mt-6 text-xl font-bold brand-green">Comunidad Privada</h3>
+                        <p class="mt-2 text-gray-600">Acceso a Discord para networking, encontrar clientes y socios estratégicos.</p>
+                        <p class="mt-4 text-lg font-semibold brand-green">Valor: <span class="line-through text-gray-400">$100</span></p>
                     </div>
-                    <div data-aos="fade-up" data-aos-delay="200">
-                         <div class="bg-white p-8 rounded-2xl shadow-sm">
-                            <svg class="w-12 h-12 mx-auto text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                            <h3 class="text-xl font-semibold mt-5 text-gray-900">Embudos Evergreen</h3>
-                            <p class="text-gray-600 mt-2 font-light">Sistema que transforma la audiencia de tu contenido en clientes 24/7, de forma automática.</p>
+                    <!-- Bonus Card 2 -->
+                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/80 reveal" style="transition-delay: 100ms;">
+                        <div class="flex items-center justify-center h-16 w-16 bg-green-100 rounded-2xl">
+                            <i data-feather="cpu" class="brand-green"></i>
                         </div>
+                        <h3 class="mt-6 text-xl font-bold brand-green">IAs Premium</h3>
+                        <p class="mt-2 text-gray-600">Herramientas de inteligencia artificial para potenciar tu productividad y creatividad.</p>
+                        <p class="mt-4 text-lg font-semibold brand-green">Valor: <span class="line-through text-gray-400">$150</span></p>
                     </div>
-                    <div data-aos="fade-up" data-aos-delay="300">
-                         <div class="bg-white p-8 rounded-2xl shadow-sm">
-                            <svg class="w-12 h-12 mx-auto text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                            <h3 class="text-xl font-semibold mt-5 text-gray-900">Automatización con IA</h3>
-                            <p class="text-gray-600 mt-2 font-light">Conversaciones inteligentes que guían a tus clientes, aumentando la confianza y las ventas.</p>
+                    <!-- Bonus Card 3 -->
+                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/80 reveal" style="transition-delay: 200ms;">
+                        <div class="flex items-center justify-center h-16 w-16 bg-green-100 rounded-2xl">
+                             <i data-feather="film" class="brand-green"></i>
                         </div>
+                        <h3 class="mt-6 text-xl font-bold brand-green">+10 Cursos Profesionales</h3>
+                        <p class="mt-2 text-gray-600">Formación extra por módulo para profundizar en áreas clave de tu negocio.</p>
+                        <p class="mt-4 text-lg font-semibold brand-green">Valor: <span class="line-through text-gray-400">$200</span></p>
+                    </div>
+                    <!-- Bonus Card 4 -->
+                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/80 reveal" style="transition-delay: 300ms;">
+                        <div class="flex items-center justify-center h-16 w-16 bg-green-100 rounded-2xl">
+                            <i data-feather="mic" class="brand-green"></i>
+                        </div>
+                        <h3 class="mt-6 text-xl font-bold brand-green">Podcast de IA</h3>
+                        <p class="mt-2 text-gray-600">Contenido exclusivo sobre las últimas tendencias en IA para aplicar a tu marca.</p>
+                        <p class="mt-4 text-lg font-semibold brand-green">Valor: <span class="line-through text-gray-400">$120</span></p>
+                    </div>
+                    <!-- Bonus Card 5 -->
+                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/80 reveal" style="transition-delay: 400ms;">
+                        <div class="flex items-center justify-center h-16 w-16 bg-green-100 rounded-2xl">
+                             <i data-feather="layers" class="brand-green"></i>
+                        </div>
+                        <h3 class="mt-6 text-xl font-bold brand-green">+9 Módulos Completos</h3>
+                        <p class="mt-2 text-gray-600">El núcleo del programa, desde mentalidad hasta cierre de ventas y escalado.</p>
+                        <p class="mt-4 text-lg font-semibold brand-green">Valor: <span class="line-through text-gray-400">$300</span></p>
+                    </div>
+                     <!-- Bonus Card 6 -->
+                    <div class="bg-brand-green text-white p-8 rounded-3xl border border-gray-200/80 reveal flex flex-col justify-center items-center text-center" style="transition-delay: 500ms;">
+                        <i data-feather="gift" class="w-12 h-12"></i>
+                        <h3 class="mt-6 text-2xl font-bold">Acceso Total Inmediato</h3>
+                        <p class="mt-2">Todo esto y mucho más al reservar tu lugar hoy.</p>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Pricing Plans Section -->
-        <section id="planes" class="py-24 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16" data-aos="fade-up">
-                    <h2 class="text-3xl md:text-5xl font-bold text-gray-900">Planes Diseñados para <span class="text-gradient">Tu Crecimiento</span></h2>
-                    <p class="text-lg text-gray-600 mt-5 max-w-2xl mx-auto font-light">Desde validar tu idea hasta dominar el mercado, tenemos el plan perfecto para ti.</p>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-start">
+        
+        <!-- ========== PRICING / FINAL CTA SECTION ========== -->
+        <section id="precio" class="py-20 md:py-28">
+            <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
+                <div class="bg-white rounded-3xl shadow-2xl shadow-gray-300/40 p-8 md:p-12 text-center border border-gray-200/50 reveal">
+                    <h2 class="text-3xl md:text-5xl font-bold brand-green">Reserva tu acceso a <span class="italic">Ascender</span></h2>
+                    <p class="mt-4 text-lg text-gray-600">Asegura tu lugar antes del lanzamiento y obtén un precio exclusivo que no se repetirá.</p>
                     
-                    <!-- Plan Tink -->
-                    <div class="bg-gray-50/70 p-8 rounded-2xl border border-gray-200 card-hover-effect" data-aos="fade-up" data-aos-delay="100">
-                        <h3 class="text-2xl font-bold text-amber-500">Plan Tink</h3>
-                        <p class="text-4xl font-bold my-4 text-gray-900">U$120</p>
-                        <p class="text-gray-600 mb-6 font-light">Ideal para quienes recién empiezan su presencia online.</p>
-                        <ul class="space-y-3 text-gray-700 font-light">
-                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Landing Page optimizada.</li>
-                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Dominio gratuito con subdominio.</li>
-                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Personalización básica.</li>
-                        </ul>
-                        <button class="w-full mt-8 bg-white text-black border border-gray-300 font-semibold py-3 px-6 rounded-full hover:bg-gray-100 transition-colors duration-300"><a href="https://wa.me/3489524105?text=Quiero%20mi%20pagina%20web%20DELTA%20TINK!
-                " class="bg-amber-400 text-black font-semibold py-4 px-10 rounded-full text-lg premium-button inline-block shadow-lg shadow-amber-400/30 hover:bg-amber-500">
-                    Comenzar
-                </a></button><br>
+                    <div class="my-10">
+                        <p class="text-lg text-gray-500">Precio de lanzamiento: <span class="line-through">$27,99 USD</span></p>
+                        <p class="text-6xl md:text-8xl font-extrabold brand-green my-2">$23,99 <span class="text-2xl md:text-3xl font-medium text-gray-500">USD</span></p>
+                        <p class="font-semibold text-lg text-green-700">Oferta de reserva por tiempo limitado</p>
                     </div>
 
-                    <!-- Plan Ding -->
-                    <div class="bg-gray-50/70 p-8 rounded-2xl border border-gray-200 card-hover-effect" data-aos="fade-up" data-aos-delay="200">
-                        <h3 class="text-2xl font-bold text-amber-500">Plan Ding</h3>
-                        <p class="text-4xl font-bold my-4 text-gray-900">U$170</p>
-                        <p class="text-gray-600 mb-6 font-light">Más impacto y mayor profesionalismo.</p>
-                        <ul class="space-y-3 text-gray-700 font-light">
-                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Todo lo del Plan Tink +</li>
-                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Dominio propio .shop.</li>
-                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Personalización avanzada.</li>
-                        </ul>
-                        <button class="w-full mt-8 bg-white text-black border border-gray-300 font-semibold py-3 px-6 rounded-full hover:bg-gray-100 transition-colors duration-300"><a href="https://wa.me/3489524105?text=Quiero%20mi%20pagina%20web%20DELTA%20DING!
-                " class="bg-amber-400 text-black font-semibold py-4 px-10 rounded-full text-lg premium-button inline-block shadow-lg shadow-amber-400/30 hover:bg-amber-500">
-                    Comenzar
-                </a></button>
-                    </div>
-
-                    <!-- Plan Dong (Most Popular) -->
-                    <div class="bg-black text-white p-8 rounded-2xl relative card-hover-effect shadow-2xl shadow-gray-300" data-aos="fade-up" data-aos-delay="300">
-                        <span class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-amber-400 text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Más Popular</span>
-                        <h3 class="text-2xl font-bold text-amber-400">Plan Dong</h3>
-                        <p class="text-4xl font-bold my-4">U$250</p>
-                        <p class="text-gray-300 mb-6 font-light">Tu negocio empieza a escalar.</p>
-                        <ul class="space-y-3 font-light">
-                            <li class="flex items-center"><span class="text-green-400 mr-3">✓</span> Todo lo del Plan Ding +</li>
-                            <li class="flex items-center"><span class="text-green-400 mr-3">✓</span> Integración con redes sociales.</li>
-                            <li class="flex items-center"><span class="text-green-400 mr-3">✓</span> Automatización de mensajes.</li>
-                            <li class="flex items-center"><span class="text-green-400 mr-3">✓</span> Embudo de ventas evergreen.</li>
-                            <li class="flex items-center"><span class="text-green-400 mr-3">✓</span> Dominio a elección (.com, .net).</li>
-                            <li class="flex items-center"><span class="text-green-400 mr-3">✓</span> Landing Page premium.</li>
-                        </ul>
-                        <button class="w-full mt-8 bg-amber-400 text-black font-bold py-3 px-6 rounded-full hover:bg-amber-500 transition-colors duration-300 premium-button"><a href="https://wa.me/3489524105?text=Quiero%20mi%20pagina%20web%20DELTA%20DONG!
-                " class="bg-amber-400 text-black font-semibold py-4 px-10 rounded-full text-lg premium-button inline-block shadow-lg shadow-amber-400/30 hover:bg-amber-500">
-                    Comenzar
-                </a></button>
-                    </div>
-
-                    <!-- Plan Bong -->
-                    <div class="bg-gray-50/70 p-8 rounded-2xl border border-gray-200 card-hover-effect" data-aos="fade-up" data-aos-delay="400">
-                        <h3 class="text-2xl font-bold text-amber-500">Plan Bong</h3>
-                        <p class="text-4xl font-bold my-4 text-gray-900">U$350</p>
-                        <p class="text-gray-600 mb-6 font-light">La experiencia completa y soporte premium.</p>
-                        <ul class="space-y-3 text-gray-700 font-light">
-                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Todo lo del Plan Dong +</li>
-                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Sitio web completo (5 págs).</li>
-                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Atención exclusiva y soporte 24/7.</li>
-                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Mantenimiento continuo.</li>
-                            <li class="flex items-center"><span class="text-green-500 mr-3">✓</span> Escalado de redes sociales.</li>
-                        </ul>
-                        <button class="w-full mt-8 bg-white text-black border border-gray-300 font-semibold py-3 px-6 rounded-full hover:bg-gray-100 transition-colors duration-300"><a href="https://wa.me/3489524105?text=Quiero%20mi%20pagina%20web%20DELTA%20BONG!
-                " class="bg-amber-400 text-black font-semibold py-4 px-10 rounded-full text-lg premium-button inline-block shadow-lg shadow-amber-400/30 hover:bg-amber-500">
-                    Comenzar
-                </a></button>
-                    </div>
-                </div> <br><br><p class = "text-center text-gray-300 mb-10 font-light">Ofrecemos Mantenimiento flexible: el valor depende de las funciones requeridas.</p>
-            </div>
-        </section>
-        <section id="casos-exito" class="py-24 bg-gray-50">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16" data-aos="fade-up">
-                    <h2 class="text-3xl md:text-5xl font-bold text-gray-900">La Confianza de <span class="text-gradient">Nuestros Clientes</span></h2>
-                    <p class="text-lg text-gray-600 mt-5 max-w-2xl mx-auto font-light">Resultados reales para negocios y proyectos que decidieron dar el siguiente paso.</p>
-                </div>
-                <div class="grid md:grid-cols-2 gap-10">
-                    <!-- Testimonial 1 -->
-                    <div class="bg-white rounded-2xl shadow-sm p-8 testimonial-card card-hover-effect" data-aos="fade-up" data-aos-delay="100">
-                        <div class="overflow-hidden rounded-lg mb-6">
-                            <a href="https://juanmamerodio.github.io/delta-tech" target="_blank" rel="noopener noreferrer" class="text-amber-500 hover:underline text-sm font-semibold mt-1 inline-block"><img class="card-hover-effect border"src="Delta.png" alt="Captura de pantalla del sitio web de Delta Tech" class="w-full h-auto object-cover"></a>
-                        </div>
-                        <blockquote class="text-lg font-light text-gray-700 italic border-l-4 border-amber-400 pl-4">
-                            "La nueva landing page transformó nuestro alcance local. Recibimos más consultas que nunca. Un servicio impecable y profesional."
-                        </blockquote>
-                        <div class="mt-4 text-right">
-                            <p class="font-semibold text-gray-900">Delta Tech</p>
-                            <p class="text-sm text-gray-500">Negocio Local, Cliente N°63</p>
-                            <a href="https://juanmamerodio.github.io/delta-tech" target="_blank" rel="noopener noreferrer" class="text-amber-500 hover:underline text-sm font-semibold mt-1 inline-block">Visitar Sitio →</a>
-                        </div>
-                    </div>
-                    <!-- Testimonial 2 -->
-                    <div class="bg-white rounded-2xl shadow-2xl p-8 testimonial-card card-hover-effect" data-aos="fade-up" data-aos-delay="200">
-                        <div class="overflow-hidden rounded-lg mb-4">
-                            <a href="https://juanmamerodio.github.io/external" target="_blank" rel="noopener noreferrer" class="text-amber-500 hover:underline text-sm font-semibold mt-1 inline-block"><img class="card-hover-effect"src="Plitvice.png" alt="Captura de pantalla del sitio web del Parque Nacional" class="w-full h-auto object-cover"></a>
-                        </div>
-                        <blockquote class="text-lg font-light text-gray-700 italic border-l-4 border-amber-400 pl-4">
-                            "Necesitábamos un diseño limpio y de alto impacto para nuestro proyecto académico. El resultado superó nuestras expectativas."
-                        </blockquote>
-                        <div class="mt-4 text-right">
-                            <p class="font-semibold text-gray-900">Parque Nacional de Croacia</p>
-                            <p class="text-sm text-gray-500">Proyecto n°6</p>
-                             <a href="https://juanmamerodio.github.io/external" target="_blank" rel="noopener noreferrer" class="text-amber-500 hover:underline text-sm font-semibold mt-1 inline-block">Visitar Sitio →</a>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-2xl shadow-sm p-8 testimonial-card card-hover-effect" data-aos="fade-up" data-aos-delay="100">
-                        <div class="overflow-hidden rounded-lg mb-6">
-                            <a href="https://juanmamerodio.github.io/Meteotecnica" target="_blank" rel="noopener noreferrer" class="text-amber-500 hover:underline text-sm font-semibold mt-1 inline-block"><img class="card-hover-effect border"src="Meteotecnica.png" alt="Captura de pantalla del sitio web de Delta Tech" class="w-full h-auto object-cover"></a>
-                        </div>
-                        <blockquote class="text-lg font-light text-gray-700 italic border-l-4 border-amber-400 pl-4">
-                            "Esta pagina hace visible todos los datos del clima de nuestra ciudad de manera limpia y organizada, es el principio de un proyecto gigante."
-                        </blockquote>
-                        <div class="mt-4 text-right">
-                            <p class="font-semibold text-gray-900">Meteotecnica</p>
-                            <p class="text-sm text-gray-500">E.E.S.T N°1, Luciano Reyes | Proyecto n°12</p>
-                            <a href="https://juanmamerodio.github.io/Meteotecnica" target="_blank" rel="noopener noreferrer" class="text-amber-500 hover:underline text-sm font-semibold mt-1 inline-block">Visitar Sitio →</a>
-                        </div>
-                    </div>
-                     <div class="bg-white rounded-2xl shadow-sm p-8 testimonial-card card-hover-effect" data-aos="fade-up" data-aos-delay="100">
-                        <div class="overflow-hidden rounded-lg mb-6">
-                            <a href="https://juanmamerodio.github.io/CineCampana" target="_blank" rel="noopener noreferrer" class="text-amber-500 hover:underline text-sm font-semibold mt-1 inline-block"><img class="card-hover-effect border"src="campana.png" alt="Captura de pantalla del sitio web de Delta Tech" class="w-full h-auto object-cover"></a>
-                        </div>
-                        <blockquote class="text-lg font-light text-gray-700 italic border-l-4 border-amber-400 pl-4">
-                            "Queriamos un diseño que se vea similar a Netflix o, porque no, a Cinemark Hoyts. Bueno, Cine Campana ahora tiene su propia web, ahora vendemos tickets Online"
-                        </blockquote>
-                        <div class="mt-4 text-right">
-                            <p class="font-semibold text-gray-900">Cine Campana</p>
-                            <p class="text-sm text-gray-500">Cliente n°22</p>
-                            <a href="https://juanmamerodio.github.io/CineCampana" target="_blank" rel="noopener noreferrer" class="text-amber-500 hover:underline text-sm font-semibold mt-1 inline-block">Visitar Sitio →</a>
-                        </div>
-                    </div>
+                    <a href="#" class="w-full max-w-md mx-auto block bg-brand-green text-white font-bold text-lg px-10 py-5 rounded-full hover:bg-brand-green-dark transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-green-900/30">
+                        RESERVAR AHORA Y AHORRAR
+                    </a>
+                    <p class="mt-6 text-sm text-gray-500">Pago 100% seguro. Acceso garantizado el 1 de Noviembre.</p>
                 </div>
             </div>
         </section>
 
+        <!-- ========== MODULES SECTION ========== -->
+        <section class="py-20 md:py-28 bg-white">
+            <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
+                <div class="text-center max-w-3xl mx-auto reveal">
+                    <h2 class="text-3xl md:text-5xl font-bold brand-green">El Camino para Ascender: Módulos</h2>
+                    <p class="mt-4 text-lg text-gray-600">Un plan de estudios estructurado para llevarte de cero a experto en la creación de tu marca personal.</p>
+                </div>
+                
+                <div class="mt-16 space-y-4 accordion-container">
+                    <!-- Módulo Item -->
+                    <div class="accordion-item bg-[#FDFBF8] border border-gray-200/80 rounded-2xl reveal">
+                        <div class="accordion-item-header p-6 flex justify-between items-center">
+                            <span class="text-lg font-semibold brand-green">Módulo 1: Decisión</span>
+                            <div class="accordion-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green">
+                                <i data-feather="plus" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                        <div class="accordion-item-body">
+                            <p class="p-6 pt-0 text-gray-600">Las bases mentales y estratégicas para comprometerte con tu éxito y superar cualquier obstáculo.</p>
+                        </div>
+                    </div>
+                     <!-- Módulo Item -->
+                    <div class="accordion-item bg-[#FDFBF8] border border-gray-200/80 rounded-2xl reveal">
+                        <div class="accordion-item-header p-6 flex justify-between items-center">
+                            <span class="text-lg font-semibold brand-green">Módulo 2: Identidad</span>
+                            <div class="accordion-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green">
+                                <i data-feather="plus" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                        <div class="accordion-item-body">
+                            <p class="p-6 pt-0 text-gray-600">Define quién eres, qué representas y cómo te comunicarás con tu audiencia para generar una conexión auténtica.</p>
+                        </div>
+                    </div>
+                    <!-- Agrega los demás módulos aquí siguiendo el mismo patrón -->
+                    <div class="accordion-item bg-[#FDFBF8] border border-gray-200/80 rounded-2xl reveal"><div class="accordion-item-header p-6 flex justify-between items-center"><span class="text-lg font-semibold brand-green">Módulo 3: Nicho</span><div class="accordion-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green"><i data-feather="plus" class="w-5 h-5"></i></div></div><div class="accordion-item-body"><p class="p-6 pt-0 text-gray-600">Descubre el mercado perfecto para ti, donde tu conocimiento tiene el mayor valor y la competencia es menor.</p></div></div>
+                    <div class="accordion-item bg-[#FDFBF8] border border-gray-200/80 rounded-2xl reveal"><div class="accordion-item-header p-6 flex justify-between items-center"><span class="text-lg font-semibold brand-green">Módulo 4: Servicios</span><div class="accordion-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green"><i data-feather="plus" class="w-5 h-5"></i></div></div><div class="accordion-item-body"><p class="p-6 pt-0 text-gray-600">Empaqueta tu conocimiento en ofertas de servicios irresistibles que tus clientes quieran comprar.</p></div></div>
+                    <div class="accordion-item bg-[#FDFBF8] border border-gray-200/80 rounded-2xl reveal"><div class="accordion-item-header p-6 flex justify-between items-center"><span class="text-lg font-semibold brand-green">Módulo 5: Offers</span><div class="accordion-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green"><i data-feather="plus" class="w-5 h-5"></i></div></div><div class="accordion-item-body"><p class="p-6 pt-0 text-gray-600">Construye ofertas de alto valor que resuelvan problemas reales y te permitan cobrar precios premium.</p></div></div>
+                    <div class="accordion-item bg-[#FDFBF8] border border-gray-200/80 rounded-2xl reveal"><div class="accordion-item-header p-6 flex justify-between items-center"><span class="text-lg font-semibold brand-green">Módulo 6: Contenido</span><div class="accordion-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green"><i data-feather="plus" class="w-5 h-5"></i></div></div><div class="accordion-item-body"><p class="p-6 pt-0 text-gray-600">Aprende a crear contenido que atraiga, eduque y convierta a tu audiencia en clientes fieles.</p></div></div>
+                    <div class="accordion-item bg-[#FDFBF8] border border-gray-200/80 rounded-2xl reveal"><div class="accordion-item-header p-6 flex justify-between items-center"><span class="text-lg font-semibold brand-green">Módulo 7: Embudos</span><div class="accordion-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green"><i data-feather="plus" class="w-5 h-5"></i></div></div><div class="accordion-item-body"><p class="p-6 pt-0 text-gray-600">Diseña sistemas automáticos de venta que trabajen para ti 24/7, atrayendo y cualificando prospectos.</p></div></div>
+                    <div class="accordion-item bg-[#FDFBF8] border border-gray-200/80 rounded-2xl reveal"><div class="accordion-item-header p-6 flex justify-between items-center"><span class="text-lg font-semibold brand-green">Módulo 8: Sesgos y Estrategias (SesEst)</span><div class="accordion-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green"><i data-feather="plus" class="w-5 h-5"></i></div></div><div class="accordion-item-body"><p class="p-6 pt-0 text-gray-600">Domina la psicología de ventas y los gatillos mentales para comunicarte de forma persuasiva y ética.</p></div></div>
+                    <div class="accordion-item bg-[#FDFBF8] border border-gray-200/80 rounded-2xl reveal"><div class="accordion-item-header p-6 flex justify-between items-center"><span class="text-lg font-semibold brand-green">Módulo 9: Prospección y Agenda</span><div class="accordion-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green"><i data-feather="plus" class="w-5 h-5"></i></div></div><div class="accordion-item-body"><p class="p-6 pt-0 text-gray-600">Sistemas efectivos para llenar tu calendario de llamadas con clientes potenciales altamente cualificados.</p></div></div>
+                    <div class="accordion-item bg-[#FDFBF8] border border-gray-200/80 rounded-2xl reveal"><div class="accordion-item-header p-6 flex justify-between items-center"><span class="text-lg font-semibold brand-green">Módulo 10: Cierre y Ascender</span><div class="accordion-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green"><i data-feather="plus" class="w-5 h-5"></i></div></div><div class="accordion-item-body"><p class="p-6 pt-0 text-gray-600">Técnicas de cierre de ventas sin presión y estrategias para escalar tu negocio a nuevas alturas.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== ABOUT US SECTION ========== -->
+        <section class="py-20 md:py-28">
+            <div class="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12">
+                 <div class="text-center max-w-3xl mx-auto reveal">
+                    <h2 class="text-3xl md:text-5xl font-bold brand-green">Creado por Expertos</h2>
+                    <p class="mt-4 text-lg text-gray-600">Nos hemos unido para combinar años de experiencia en marketing, ventas y creación de marcas para darte un sistema probado.</p>
+                </div>
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+                    <div class="text-center reveal">
+                        <img src="https://placehold.co/400x400/2E4B43/FDFBF8?text=JB" alt="Juan Bautista Bondare" class="w-48 h-48 mx-auto rounded-full shadow-lg">
+                        <h3 class="mt-6 text-2xl font-bold brand-green">Juan Bautista Bondare</h3>
+                        <p class="mt-2 text-gray-600">Especialista en estrategias de crecimiento y monetización de marcas personales.</p>
+                    </div>
+                    <div class="text-center reveal" style="transition-delay: 200ms;">
+                        <img src="https://placehold.co/400x400/2E4B43/FDFBF8?text=JM" alt="Juan Manuel Merodio" class="w-48 h-48 mx-auto rounded-full shadow-lg">
+                        <h3 class="mt-6 text-2xl font-bold brand-green">Juan Manuel Merodio</h3>
+                        <p class="mt-2 text-gray-600">Experto en embudos de venta, copywriting y cierre de clientes de alto valor.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ========== QUALIFICATION FORM SECTION ========== -->
+        <section class="py-20 md:py-28 bg-white">
+            <div class="max-w-3xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
+                <div class="reveal">
+                    <h2 class="text-3xl md:text-5xl font-bold brand-green">¿Listo para una solución personalizada?</h2>
+                    <p class="mt-4 text-lg text-gray-600">Si buscas ir más rápido y con un acompañamiento directo, completa este formulario para cualificar y agendar una llamada estratégica con nuestro equipo.</p>
+                </div>
+                <form id="qualify-form" class="mt-12 text-left space-y-6 reveal" style="transition-delay: 200ms;">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Nombre Completo</label>
+                        <input type="text" id="name" name="name" required class="mt-1 block w-full px-4 py-3 bg-[#FDFBF8] border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                    </div>
+                     <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Mejor Email</label>
+                        <input type="email" id="email" name="email" required class="mt-1 block w-full px-4 py-3 bg-[#FDFBF8] border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="business" class="block text-sm font-medium text-gray-700">¿Cuál es tu negocio o área de expertise?</label>
+                        <input type="text" id="business" name="business" required class="mt-1 block w-full px-4 py-3 bg-[#FDFBF8] border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                    </div>
+                     <div>
+                        <label for="revenue" class="block text-sm font-medium text-gray-700">¿Cuáles son tus ingresos mensuales actuales?</label>
+                         <select id="revenue" name="revenue" required class="mt-1 block w-full px-4 py-3 bg-[#FDFBF8] border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                             <option>Aún no genero ingresos</option>
+                             <option>Menos de $1,000/mes</option>
+                             <option>$1,000 - $5,000/mes</option>
+                             <option>$5,000 - $10,000/mes</option>
+                             <option>Más de $10,000/mes</option>
+                         </select>
+                    </div>
+                    <div>
+                        <button type="submit" class="w-full bg-brand-green text-white font-bold text-lg px-10 py-4 rounded-full hover:bg-brand-green-dark transition-colors duration-300 shadow-lg shadow-green-900/20">
+                            Agendar mi Llamada Estratégica
+                        </button>
+                    </div>
+                </form>
+                <div id="form-success" class="hidden mt-8 p-4 bg-green-100 text-green-800 rounded-xl">
+                    ¡Gracias! Hemos recibido tu información. Pronto nos pondremos en contacto contigo.
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========== FAQ SECTION ========== -->
+        <section class="py-20 md:py-28">
+            <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
+                 <div class="text-center max-w-3xl mx-auto reveal">
+                    <h2 class="text-3xl md:text-5xl font-bold brand-green">Preguntas Frecuentes</h2>
+                </div>
+                <div class="mt-16 space-y-4 accordion-container">
+                    <!-- FAQ Item -->
+                    <div class="accordion-item bg-white border border-gray-200/80 rounded-2xl reveal">
+                        <div class="accordion-item-header p-6 flex justify-between items-center">
+                            <span class="text-lg font-semibold brand-green">¿Para quién es este infoproducto?</span>
+                            <div class="accordion-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green">
+                                <i data-feather="plus" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                        <div class="accordion-item-body">
+                            <p class="p-6 pt-0 text-gray-600">Ascender está diseñado para coaches, consultores, creadores de contenido, freelancers y cualquier experto que quiera monetizar su conocimiento a través de una marca personal sólida. No importa si estás empezando de cero o ya tienes una base, el programa te llevará al siguiente nivel.</p>
+                        </div>
+                    </div>
+                     <!-- FAQ Item -->
+                    <div class="accordion-item bg-white border border-gray-200/80 rounded-2xl reveal">
+                        <div class="accordion-item-header p-6 flex justify-between items-center">
+                            <span class="text-lg font-semibold brand-green">¿Cuándo tendré acceso al contenido?</span>
+                            <div class="accordion-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green">
+                                <i data-feather="plus" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                        <div class="accordion-item-body">
+                            <p class="p-6 pt-0 text-gray-600">Al reservar tu lugar, aseguras el precio especial de preventa. Recibirás el acceso completo a todos los módulos, bonos y a la comunidad privada el día del lanzamiento oficial: 1 de Noviembre.</p>
+                        </div>
+                    </div>
+                     <!-- FAQ Item -->
+                    <div class="accordion-item bg-white border border-gray-200/80 rounded-2xl reveal">
+                        <div class="accordion-item-header p-6 flex justify-between items-center">
+                            <span class="text-lg font-semibold brand-green">¿Qué pasa si no tengo experiencia previa?</span>
+                            <div class="accordion-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green">
+                                <i data-feather="plus" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                        <div class="accordion-item-body">
+                            <p class="p-6 pt-0 text-gray-600">¡No hay problema! El programa está estructurado paso a paso, desde los fundamentos (Módulo 1: Decisión) hasta las estrategias más avanzadas de escalado. Te guiaremos en cada etapa del proceso.</p>
+                        </div>
+                    </div>
+                     <!-- FAQ Item -->
+                    <div class="accordion-item bg-white border border-gray-200/80 rounded-2xl reveal">
+                        <div class="accordion-item-header p-6 flex justify-between items-center">
+                            <span class="text-lg font-semibold brand-green">¿Tendré soporte durante el programa?</span>
+                            <div class="accordion-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green">
+                                <i data-feather="plus" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                        <div class="accordion-item-body">
+                            <p class="p-6 pt-0 text-gray-600">Sí. Tendrás acceso a la comunidad privada de Discord, donde podrás hacer preguntas, compartir tus avances y conectar tanto con nosotros, los creadores, como con otros miembros que están en el mismo camino que tú.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer -->
-    <footer id="contacto" class="bg-gray-50 border-t border-gray-200">
-        <div class="container mx-auto px-6 py-16 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-aos="fade-up">¿Listo para llevar tu negocio al <span class="text-gradient">siguiente nivel</span>?</h2>
-            <p class="text-lg text-gray-600 mb-10 font-light" data-aos="fade-up" data-aos-delay="100">Contáctanos hoy y empecemos a construir tu futuro digital.</p>
-            <div data-aos="fade-up" data-aos-delay="200">
-                <a href="https://wa.me/3489524105?text=Quiero%20mi%20pagina%20web%20DELTA%20!
-                " class="bg-amber-400 text-black font-semibold py-4 px-10 rounded-full text-lg premium-button inline-block shadow-lg shadow-amber-400/30 hover:bg-amber-500">
-                    Hablemos
-                </a>
-            </div>
-            <p class="text-gray-500 mt-16 text-sm font-light">&copy; 2024 Delta Agencia. Todos los derechos reservados. Campana, Buenos Aires.</p>
+    <!-- ========== FOOTER ========== -->
+    <footer class="bg-white">
+        <div class="max-w-7xl mx-auto py-12 px-6 sm:px-8 lg:px-12 text-center">
+            <a href="#" class="flex items-center justify-center space-x-2">
+                 <img class="h-8 w-auto" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0zMC43Njk1IDY5LjIzMDlMMzAuNzY5NSA4NC42MTU1SDM4LjQ2MThMNzYuOTIzMyAyMy4wNzcxVjcuNjkxNDFIMzAuNzY5NVYyMy4wNzcxSDU5LjQzNzlMMzAuNzY5NSA2MS41Mzg2VjY5LjIzMDlaIiBmaWxsPSIjMkU0QjQzIi8+Cjwvc3ZnPgo=" alt="Logo Ascender">
+                 <span class="text-2xl font-bold brand-green">Ascender</span>
+            </a>
+            <p class="mt-4 text-gray-500">&copy; 2025 Ascender. Todos los derechos reservados.</p>
+             <p class="text-sm text-gray-400 mt-2">Creado por Juan Bautista Bondare y Juan Manuel Merodio</p>
         </div>
     </footer>
 
 
-    <!-- AOS (Animate On Scroll) Script -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 50,
+        // Inicializar Feather Icons
+        feather.replace();
+
+        // Script para animación al hacer scroll (Intersection Observer)
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1 // Se activa cuando el 10% del elemento es visible
         });
 
-        // Mobile Menu Toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        revealElements.forEach(el => {
+            observer.observe(el);
         });
+
+        // Script para Acordeón (FAQ y Módulos)
+        const accordionContainers = document.querySelectorAll('.accordion-container');
+
+        accordionContainers.forEach(container => {
+            container.addEventListener('click', (e) => {
+                const header = e.target.closest('.accordion-item-header');
+                if (!header) return;
+
+                const accordionItem = header.parentElement;
+                const wasActive = accordionItem.classList.contains('active');
+                
+                // Cerrar todos los items
+                container.querySelectorAll('.accordion-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Abrir el item clickeado si no estaba activo
+                if (!wasActive) {
+                    accordionItem.classList.add('active');
+                }
+            });
+        });
+
+        // Script para el formulario
+        const form = document.getElementById('qualify-form');
+        const successMessage = document.getElementById('form-success');
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevenir el envío real del formulario
+            
+            // Aquí iría la lógica para enviar los datos a un servidor (p.ej. con fetch)
+            // Por ahora, solo simulamos el éxito
+            
+            console.log('Formulario enviado:');
+            console.log('Nombre:', document.getElementById('name').value);
+            console.log('Email:', document.getElementById('email').value);
+            console.log('Negocio:', document.getElementById('business').value);
+            console.log('Ingresos:', document.getElementById('revenue').value);
+            
+            form.style.display = 'none';
+            successMessage.style.display = 'block';
+        });
+
     </script>
-
 </body>
 </html>
