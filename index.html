@@ -134,7 +134,7 @@
                     <a href="#precio" class="w-full sm:w-auto bg-brand-green text-white font-bold text-lg px-10 py-5 rounded-full hover:bg-brand-green-dark transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-green-900/30">
                         SÍ, QUIERO RESERVAR MI LUGAR
                     </a>
-                    <a href="#" class="w-full sm:w-auto bg-gray-200/80 text-gray-800 font-semibold px-8 py-4 rounded-full hover:bg-gray-300/80 transition-colors duration-300">
+                    <a href="#qualifying" class="w-full sm:w-auto bg-gray-200/80 text-gray-800 font-semibold px-8 py-4 rounded-full hover:bg-gray-300/80 transition-colors duration-300">
                         Ver Preview
                     </a>
                 </div>
@@ -344,16 +344,21 @@
         </section>
         
         <!-- ========== QUALIFICATION FORM SECTION ========== -->
-        <section class="py-20 md:py-28 bg-white">
+<section id="qualifying" class="py-20 md:py-28 bg-white">
             <div class="max-w-3xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
                 <div class="reveal">
-                    <h2 class="text-3xl md:text-5xl font-bold brand-green">Si todavia tenes dudas <br>Te preparamos una preview</h2>
+                    <h2 class="text-3xl md:text-5xl font-bold brand-green">Si todavia tenes dudas <br><span class="block bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-green-800">Te preparamos una preview</span></h2>
                     <p class="mt-4 text-lg text-gray-600">estamos seguros del valor que aportamos, completá con tus datos así te llevas la preview GRATIS.</p>
                 </div>
                 <form id="qualify-form" class="mt-12 text-left space-y-6 reveal" style="transition-delay: 200ms;">
                     <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700">Instagram (sin arroba)</label>
-                        <input type="text" id="name" name="name" required class="mt-1 block w-full px-4 py-3 bg-[#FDFBF8] border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                        <label for="instagram" class="block text-sm font-medium text-gray-700">Instagram (sin arroba)</label>
+                        <!-- COMENTARIO DE CAMBIO:
+                             Cambiado 'name="name"' y 'id="name"' a 'name="instagram"' y 'id="instagram"'.
+                             Es crucial que el atributo 'name' del input coincida con la clave
+                             que el JavaScript buscará para enviar a Google Sheets.
+                        -->
+                        <input type="text" id="instagram" name="instagram" required class="mt-1 block w-full px-4 py-3 bg-[#FDFBF8] border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
                     </div>
                     <div>
                         <label for="business" class="block text-sm font-medium text-gray-700">¿Tenés negocio? Explicalo resumidamete</label>
@@ -370,13 +375,17 @@
                          </select>
                     </div>
                     <div>
-                        <button type="submit" class="w-full bg-brand-green text-white font-bold text-lg px-10 py-4 rounded-full hover:bg-brand-green-dark transition-colors duration-300 shadow-lg shadow-green-900/20">
-                            Agendar mi Llamada Estratégica
+                        <button type="submit" id="submit-button" class="w-full bg-brand-green text-white font-bold text-lg px-10 py-4 rounded-full hover:bg-brand-green-dark transition-all duration-300 shadow-lg shadow-green-900/20 flex items-center justify-center">
+                            Obtener mi Preview GRATIS
                         </button>
+                    </div>
+                    <!-- COMENTARIO DE CAMBIO: Añadido un div para mostrar mensajes de error al usuario -->
+                    <div id="form-error" class="hidden mt-4 p-4 bg-red-100 text-red-800 rounded-xl text-center">
+                        Por favor, completa todos los campos requeridos.
                     </div>
                 </form>
                 <div id="form-success" class="hidden mt-8 p-4 bg-green-100 text-green-800 rounded-xl">
-                    ¡Gracias! Hemos recibido tu información. Pronto nos pondremos en contacto contigo.
+                    ¡Gracias! Hemos recibido tu información. Redirigiendo...
                 </div>
             </div>
         </section>
@@ -455,71 +464,7 @@
     </footer>
 
 
-    <script>
-        // Inicializar Feather Icons
-        feather.replace();
-
-        // Script para animación al hacer scroll (Intersection Observer)
-        const revealElements = document.querySelectorAll('.reveal');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.1 // Se activa cuando el 10% del elemento es visible
-        });
-
-        revealElements.forEach(el => {
-            observer.observe(el);
-        });
-
-        // Script para Acordeón (FAQ y Módulos)
-        const accordionContainers = document.querySelectorAll('.accordion-container');
-
-        accordionContainers.forEach(container => {
-            container.addEventListener('click', (e) => {
-                const header = e.target.closest('.accordion-item-header');
-                if (!header) return;
-
-                const accordionItem = header.parentElement;
-                const wasActive = accordionItem.classList.contains('active');
-                
-                // Cerrar todos los items
-                container.querySelectorAll('.accordion-item').forEach(item => {
-                    item.classList.remove('active');
-                });
-                
-                // Abrir el item clickeado si no estaba activo
-                if (!wasActive) {
-                    accordionItem.classList.add('active');
-                }
-            });
-        });
-
-        // Script para el formulario
-        const form = document.getElementById('qualify-form');
-        const successMessage = document.getElementById('form-success');
-        
-        form.addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevenir el envío real del formulario
-            
-            // Aquí iría la lógica para enviar los datos a un servidor (p.ej. con fetch)
-            // Por ahora, solo simulamos el éxito
-            
-            console.log('Formulario enviado:');
-            console.log('Nombre:', document.getElementById('name').value);
-            console.log('Email:', document.getElementById('email').value);
-            console.log('Negocio:', document.getElementById('business').value);
-            console.log('Ingresos:', document.getElementById('revenue').value);
-            
-            form.style.display = 'none';
-            successMessage.style.display = 'block';
-        });
-
-    </script>
+    <script src="script.js"></script>
 </body>
+    
 </html>
