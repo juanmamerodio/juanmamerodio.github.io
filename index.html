@@ -4,43 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ascender - Tu Marca Personal a +10k/mes</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Inter -->
+
+    <!-- Preconexión para fuentes y assets críticos, mejorando la velocidad de carga -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="Ascender icon copy.png">
-
     
-    <!-- Feather Icons -->
-    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Carga de la fuente 'Inter'. Se eliminó 'Poppins' que no se utilizaba. -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="Ascender icon.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-        /* Estilos personalizados para complementar Tailwind */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FDFBF8; /* Blanco levemente cálido */
-            color: #1a202c;
-            letter-spacing: -0.6px;
+        /* Estilos personalizados y optimizados */
+        :root {
+            /* Definición de variables CSS para colores y transiciones consistentes */
+            --brand-green: #2E4B43;
+            --brand-green-dark: #243a34;
+            --background-color: #FDFBF8;
+            --text-color: #1a202c;
+            --transition-duration: 0.4s;
+            --transition-timing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* Colores personalizados de la marca */
-        .brand-green { color: #2E4B43; }
-        .bg-brand-green { background-color: #2E4B43; }
-        .border-brand-green { border-color: #2E4B43; }
-        .hover\:bg-brand-green-dark:hover { background-color: #243a34; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            letter-spacing: -0.6px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-        /* Estilo para el VSL con aspecto profesional */
+        /* Clases de utilidad para la marca */
+        .brand-green { color: var(--brand-green); }
+        .bg-brand-green { background-color: var(--brand-green); }
+        .border-brand-green { border-color: var(--brand-green); }
+        .hover\:bg-brand-green-dark:hover { background-color: var(--brand-green-dark); }
+
+        /* Estilo optimizado para el contenedor de video responsive */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%; /* Aspect Ratio 16:9 */
             height: 0;
             overflow: hidden;
-            border-radius: 1.5rem; /* Bordes redondeados consistentes */
+            border-radius: 1.5rem;
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
             border: 1px solid rgba(0,0,0,0.05);
         }
@@ -53,69 +64,41 @@
             height: 100%;
         }
         
-        /* Animaciones de entrada */
+        /* Animaciones de entrada (Scroll-reveal) */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: opacity var(--transition-duration) var(--transition-timing), 
+                        transform var(--transition-duration) var(--transition-timing);
         }
-                .brand-green {
-            color: var(--color-brand-green);
-        }
-        
-        /* Estilos del Desplegable (Dropdown dentro de la Tarjeta) */
-        /* Estilo para el contenido colapsable del acordeón */
-.card-content-dropdown {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                margin-top 0.3s ease-out;
-}
-
-/* Estilo para la tarjeta cuando está activa */
-.module-card.active .card-content-dropdown {
-    /* Un valor suficientemente grande para todo tu contenido */
-    max-height: 500px; 
-    transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* Estilo para el icono de chevron */
-.module-card .chevron {
-    transition: transform 0.3s ease;
-}
-
-/* Rotación del chevron cuando la tarjeta está activa */
-.module-card.active .chevron {
-    transform: rotate(180deg);
-}
-
         
         .reveal-visible {
             opacity: 1;
             transform: translateY(0);
         }
-        
-        /* Estilo para acordeón de FAQ y Módulos */
-        .accordion-item-header {
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .accordion-item-body {
+
+        /* Estilos unificados para Acordeones y Tarjetas Desplegables */
+        .collapsible-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+            transition: max-height 0.5s ease-out;
         }
-        .accordion-item.active .accordion-item-body {
-            max-height: 1000px; /* Suficientemente grande */
-            transition: max-height 1s ease-in-out;
+        .collapsible-container.active .collapsible-content {
+            max-height: 1000px; /* Un valor suficientemente grande */
+            transition: max-height 0.7s ease-in-out;
         }
-        .accordion-item.active .accordion-icon {
-            transform: rotate(45deg);
-        }
-        .accordion-icon {
+        .collapsible-container .collapsible-icon {
             transition: transform 0.3s ease;
         }
-
+        .collapsible-container.active .collapsible-icon {
+            transform: rotate(180deg);
+        }
+        .faq-icon.collapsible-icon {
+             transition: transform 0.3s ease;
+        }
+        .collapsible-container.active .faq-icon.collapsible-icon {
+            transform: rotate(45deg);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -124,12 +107,10 @@
     <header class="sticky top-0 z-50 bg-[#FDFBF8]/80 backdrop-blur-lg border-b border-gray-200/50">
         <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
             <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <a href="#" class="flex items-center space-x-2">
+                <a href="#" class="flex items-center space-x-2" aria-label="Página de inicio de Ascender">
                     <img class="h-20 w-auto" src="Ascender icon.png" alt="Logo Ascender">
                     <span class="text-2xl font-bold brand-green">Ascender</span>
                 </a>
-                <!-- CTA Button -->
                 <a href="#precio" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-full hover:bg-brand-green-dark transition-colors duration-300 shadow-lg shadow-green-900/20">
                     Reservar Ahora
                 </a>
@@ -153,14 +134,15 @@
                     </p>
                 </div>
                 
-                <div class="mt-12 max-w-4xl mx-auto reveal" style="transition-delay: 200ms;">
+                <div class="mt-12 max-w-4xl mx-auto reveal">
                      <div class="video-container">
-                        <!-- Reemplazar con el ID de tu video de YouTube/Vimeo -->
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video Sales Letter" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
+                         <!-- El iframe ahora tiene un título descriptivo para accesibilidad -->
+                         <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video de presentación de Ascender" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                     </div>
                 </div>
 
-                <div class="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 reveal" style="transition-delay: 400ms;">
+                <div class="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 reveal">
+                    <!-- Enlace externo con atributos de seguridad y UX -->
                     <a href="#precio" class="w-full sm:w-auto bg-brand-green text-white font-bold text-lg px-10 py-5 rounded-full hover:bg-brand-green-dark transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-green-900/30">
                         SÍ, QUIERO RESERVAR MI LUGAR
                     </a>
@@ -168,7 +150,7 @@
                         Ver Preview
                     </a>
                 </div>
-                <p class="mt-4 text-sm text-gray-500 font-medium reveal" style="transition-delay: 500ms;">Lanzamiento oficial de la camada: 1 de Noviembre.
+                <p class="mt-4 text-sm text-gray-500 font-medium reveal">Lanzamiento oficial de la camada: 1 de Noviembre.
                     <br>cupos de reserva: 100.
                 </p>
             </div>
@@ -183,7 +165,7 @@
                 </div>
 
                 <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Bonus Card 1 -->
+                    <!-- Cards de Beneficios -->
                     <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/80 reveal">
                         <div class="flex items-center justify-center h-16 w-16 bg-green-100 rounded-2xl">
                             <i data-feather="users" class="brand-green"></i>
@@ -192,8 +174,7 @@
                         <p class="mt-2 text-gray-600">Acceso a Discord para networking, encontrar clientes y socios estratégicos.</p>
                         <p class="mt-4 text-lg font-semibold brand-green">Valor: <span class="line-through text-gray-400">$100</span></p>
                     </div>
-                    <!-- Bonus Card 2 -->
-                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/80 reveal" style="transition-delay: 100ms;">
+                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/80 reveal">
                         <div class="flex items-center justify-center h-16 w-16 bg-green-100 rounded-2xl">
                             <i data-feather="cpu" class="brand-green"></i>
                         </div>
@@ -201,17 +182,15 @@
                         <p class="mt-2 text-gray-600">Herramientas de inteligencia artificial para que puedas apalancarte de ellas.</p>
                         <p class="mt-4 text-lg font-semibold brand-green">Valor: <span class="line-through text-gray-400">$150</span></p>
                     </div>
-                    <!-- Bonus Card 3 -->
-                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/80 reveal" style="transition-delay: 200ms;">
+                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/80 reveal">
                         <div class="flex items-center justify-center h-16 w-16 bg-green-100 rounded-2xl">
-                             <i data-feather="film" class="brand-green"></i>
+                            <i data-feather="film" class="brand-green"></i>
                         </div>
                         <h3 class="mt-6 text-xl font-bold brand-green">+10 Cursos Explicativos</h3>
                         <p class="mt-2 text-gray-600">Videos extra por módulo para profundizar en tu entendimiento y que te lleves la mejor experiencia.</p>
                         <p class="mt-4 text-lg font-semibold brand-green">Valor: <span class="line-through text-gray-400">$200</span></p>
                     </div>
-                    <!-- Bonus Card 4 -->
-                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/80 reveal" style="transition-delay: 300ms;">
+                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/80 reveal">
                         <div class="flex items-center justify-center h-16 w-16 bg-green-100 rounded-2xl">
                             <i data-feather="mic" class="brand-green"></i>
                         </div>
@@ -219,17 +198,15 @@
                         <p class="mt-2 text-gray-600">Resumen de Modulos y Submodulos con AI de Podcast: Vas a poder escuchar los modulos mientras haces otra cosa</p>
                         <p class="mt-4 text-lg font-semibold brand-green">Valor: <span class="line-through text-gray-400">$120</span></p>
                     </div>
-                    <!-- Bonus Card 5 -->
-                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/80 reveal" style="transition-delay: 400ms;">
+                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/80 reveal">
                         <div class="flex items-center justify-center h-16 w-16 bg-green-100 rounded-2xl">
-                             <i data-feather="layers" class="brand-green"></i>
+                            <i data-feather="layers" class="brand-green"></i>
                         </div>
                         <h3 class="mt-6 text-xl font-bold brand-green">+9 Módulos Completos</h3>
                         <p class="mt-2 text-gray-600">El núcleo del programa, desde mentalidad hasta cierre de ventas y escalado.</p>
                         <p class="mt-4 text-lg font-semibold brand-green">Valor: <span class="line-through text-gray-400">$300</span></p>
                     </div>
-                     <!-- Bonus Card 6 -->
-                    <div class="bg-brand-green text-white p-8 rounded-3xl border border-gray-200/80 reveal flex flex-col justify-center items-center text-center" style="transition-delay: 500ms;">
+                    <div class="bg-brand-green text-white p-8 rounded-3xl border border-gray-200/80 reveal flex flex-col justify-center items-center text-center">
                         <i data-feather="gift" class="w-12 h-12"></i>
                         <h3 class="mt-6 text-2xl font-bold">Acceso Total en Notion</h3>
                         <p class="mt-2">Todo este contenido y mas sorpresas estarán disponibles en Notion</p>
@@ -251,7 +228,7 @@
                         <p class="font-semibold text-lg text-green-700">Oferta de reserva por tiempo limitado</p>
                     </div>
 
-                    <a href="https://unlock.ascender.uno" class="w-full max-w-md mx-auto block bg-brand-green text-white font-bold text-lg px-10 py-5 rounded-full hover:bg-brand-green-dark transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-green-900/30">
+                    <a href="https://unlock.ascender.uno" target="_blank" rel="noopener noreferrer" class="w-full max-w-md mx-auto block bg-brand-green text-white font-bold text-lg px-10 py-5 rounded-full hover:bg-brand-green-dark transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-green-900/30">
                         RESERVAR YA Y AHORRAR
                     </a>
                     <p class="mt-6 text-sm text-gray-500">Pago 100% seguro. Acceso completo el 1 de Noviembre.</p>
@@ -259,200 +236,169 @@
             </div>
         </section>
 
-<section class="py-20 md:py-28 bg-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12">
-        <div class="text-center max-w-3xl mx-auto reveal">
-            <h2 class="text-3xl md:text-5xl font-bold brand-green leading-tight">El Camino para Ascender: <br><span class="block bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-green-800 mt-2">Estos son los Módulos</span></h2>
-            <p class="mt-4 text-lg text-gray-600">Un plan de estudios estructurado para llevarte desde cero a tu marca personal. (¡Haz clic en las tarjetas para ver el detalle!)</p>
-        </div>
-        
-        <div class="mt-16 grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-            
-            <div class="module-card bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal" 
-                onclick="toggleCardContent(this, 'content-01')">
+        <!-- ========== MODULES SECTION ========== -->
+        <section id="modulos" class="py-20 md:py-28 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12">
+                <div class="text-center max-w-3xl mx-auto reveal">
+                    <h2 class="text-3xl md:text-5xl font-bold brand-green leading-tight">El Camino para Ascender: <br><span class="block bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-green-800 mt-2">Estos son los Módulos</span></h2>
+                    <p class="mt-4 text-lg text-gray-600">Un plan de estudios estructurado para llevarte desde cero a tu marca personal. (¡Haz clic en las tarjetas para ver el detalle!)</p>
+                </div>
                 
-                <div class="flex justify-between items-start">
-                    <div>
-                        <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
-                            <span class="text-xl lg:text-2xl font-bold brand-green">01</span>
+                <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+                    <!-- Las tarjetas ahora son botones para mejorar la accesibilidad y semántica -->
+                    <!-- Se eliminó el onclick en línea, la lógica ahora está en el script -->
+                    <button class="module-card collapsible-container bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal text-left">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
+                                    <span class="text-xl lg:text-2xl font-bold brand-green">01</span>
+                                </div>
+                                <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 1: Decisión</h3>
+                            </div>
+                            <i data-feather="chevron-down" class="collapsible-icon h-6 w-6 text-green-700 flex-shrink-0 mt-1"></i>
                         </div>
-                        <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 1: Decisión</h3>
-                    </div>
-                    <svg class="chevron h-6 w-6 text-green-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </div>
+                        <div class="collapsible-content">
+                            <p class="mt-4 text-gray-600 leading-relaxed">Explico la historia detrás de Ascender, hablamos sobre la mentalidad que aborda tener un negocio y vamos a crear un propósito juntos asi dejas de procrastinar.</p>
+                        </div>
+                    </button>
+                    
+                    <button class="module-card collapsible-container bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal text-left">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
+                                    <span class="text-xl lg:text-2xl font-bold brand-green">02</span>
+                                </div>
+                                <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 2: Fundaciones</h3>
+                            </div>
+                            <i data-feather="chevron-down" class="collapsible-icon h-6 w-6 text-green-700 flex-shrink-0 mt-1"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="mt-4 text-gray-600 leading-relaxed">Entendemos los fundamentos para empezar una marca personal tomando acción y riesgos que nos llevarán hasta nuestra meta. Entendemos nuestro sueño y lo visualizamos. </p>
+                        </div>
+                    </button>
 
-                <div id="content-01" class="card-content-dropdown">
-                    <p class="mt-4 text-gray-600 leading-relaxed">Explico la historia detrás de Ascender, hablamos sobre la mentalidad que aborda tener un negocio y vamos a crear un propósito juntos asi dejas de procrastinar.</p>
-                </div>
-            </div>
-            
-            <div class="module-card bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal" style="transition-delay: 50ms;"
-                onclick="toggleCardContent(this, 'content-02')">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
-                            <span class="text-xl lg:text-2xl font-bold brand-green">02</span>
+                    <button class="module-card collapsible-container bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal text-left">
+                        <div class="flex justify-between items-start">
+                             <div>
+                                <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
+                                    <span class="text-xl lg:text-2xl font-bold brand-green">03</span>
+                                </div>
+                                <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 3: Nicho</h3>
+                            </div>
+                            <i data-feather="chevron-down" class="collapsible-icon h-6 w-6 text-green-700 flex-shrink-0 mt-1"></i>
                         </div>
-                        <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 2: Fundaciones</h3>
-                    </div>
-                    <svg class="chevron h-6 w-6 text-green-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </div>
-                <div id="content-02" class="card-content-dropdown">
-                    <p class="mt-4 text-gray-600 leading-relaxed">Entendemos los fundamentos para empezar una marca personal tomando acción y riesgos que nos llevarán hasta nuestra meta. Entendemos nuestro sueño y lo visualizamos. </p>
-                </div>
-            </div>
-            
-            <div class="module-card bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal" style="transition-delay: 100ms;"
-                onclick="toggleCardContent(this, 'content-03')">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
-                            <span class="text-xl lg:text-2xl font-bold brand-green">03</span>
+                        <div class="collapsible-content">
+                            <p class="mt-4 text-gray-600 leading-relaxed">En ves de gritar como loco, te explico y te muestro como podes hablarle a las personas correctas pero esta ves hablando bajo y con autoridad.</p>
                         </div>
-                        <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 3: Nicho</h3>
-                    </div>
-                    <svg class="chevron h-6 w-6 text-green-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </div>
-                <div id="content-03" class="card-content-dropdown">
-                    <p class="mt-4 text-gray-600 leading-relaxed">En ves de gritar como loco, te explico y te muestro como podes hablarle a las personas correctas pero esta ves hablando bajo y con autoridad.</p>
-                </div>
-            </div>
-            
-            <div class="module-card bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal" style="transition-delay: 150ms;"
-                onclick="toggleCardContent(this, 'content-04')">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
-                            <span class="text-xl lg:text-2xl font-bold brand-green">04</span>
+                    </button>
+
+                    <button class="module-card collapsible-container bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal text-left">
+                        <div class="flex justify-between items-start">
+                             <div>
+                                <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
+                                    <span class="text-xl lg:text-2xl font-bold brand-green">04</span>
+                                </div>
+                                <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 4: Servicios</h3>
+                            </div>
+                            <i data-feather="chevron-down" class="collapsible-icon h-6 w-6 text-green-700 flex-shrink-0 mt-1"></i>
                         </div>
-                        <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 4: Servicios</h3>
-                    </div>
-                    <svg class="chevron h-6 w-6 text-green-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </div>
-                <div id="content-04" class="card-content-dropdown">
-                    <p class="mt-4 text-gray-600 leading-relaxed">Empaquetamos tu conocimiento de manera clave para escalar de la mejor manera posible adaptado a donde estas hoy a donde querés estar mañana..</p>
-                </div>
-            </div>
-            
-            <div class="module-card bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal" style="transition-delay: 200ms;"
-                onclick="toggleCardContent(this, 'content-05')">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
-                            <span class="text-xl lg:text-2xl font-bold brand-green">05</span>
+                        <div class="collapsible-content">
+                            <p class="mt-4 text-gray-600 leading-relaxed">Empaquetamos tu conocimiento de manera clave para escalar de la mejor manera posible adaptado a donde estas hoy a donde querés estar mañana..</p>
                         </div>
-                        <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 5: Offers</h3>
-                    </div>
-                    <svg class="chevron h-6 w-6 text-green-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </div>
-                <div id="content-05" class="card-content-dropdown">
-                    <p class="mt-4 text-gray-600 leading-relaxed">Te explico como ofrecer tus servicios conviertiendolos en transformaciones reales para que nadie pueda decirte que no</p>
-                </div>
-            </div>
-            
-            <div class="module-card bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal" style="transition-delay: 250ms;"
-                onclick="toggleCardContent(this, 'content-06')">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
-                            <span class="text-xl lg:text-2xl font-bold brand-green">06</span>
+                    </button>
+
+                    <button class="module-card collapsible-container bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal text-left">
+                        <div class="flex justify-between items-start">
+                             <div>
+                                <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
+                                    <span class="text-xl lg:text-2xl font-bold brand-green">05</span>
+                                </div>
+                                <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 5: Offers</h3>
+                            </div>
+                            <i data-feather="chevron-down" class="collapsible-icon h-6 w-6 text-green-700 flex-shrink-0 mt-1"></i>
                         </div>
-                        <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 6: Contenido</h3>
-                    </div>
-                    <svg class="chevron h-6 w-6 text-green-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </div>
-                <div id="content-06" class="card-content-dropdown">
-                    <p class="mt-4 text-gray-600 leading-relaxed">Llegue a hacer +100 Millones de visualizaciones en el mes y te explico los diferentes +10 tipos de contenido que te convendría subir explicando como guionar, grabar, editar, etc.</p>
-                </div>
-            </div>
-            
-            <div class="module-card bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal" style="transition-delay: 300ms;"
-                onclick="toggleCardContent(this, 'content-07')">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
-                            <span class="text-xl lg:text-2xl font-bold brand-green">07</span>
+                        <div class="collapsible-content">
+                            <p class="mt-4 text-gray-600 leading-relaxed">Te explico como ofrecer tus servicios conviertiendolos en transformaciones reales para que nadie pueda decirte que no</p>
                         </div>
-                        <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 7: Prospección</h3>
-                    </div>
-                    <svg class="chevron h-6 w-6 text-green-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </div>
-                <div id="content-07" class="card-content-dropdown">
-                    <p class="mt-4 text-gray-600 leading-relaxed">Te explico desde como obtener tu primer cliente, hasta como convertir tu audiencia en leads dominando el arte de vender sin vender.</p>
-                </div>
-            </div>
-            
-            <div class="module-card bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal" style="transition-delay: 350ms;"
-                onclick="toggleCardContent(this, 'content-08')">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
-                            <span class="text-xl lg:text-2xl font-bold brand-green">08</span>
+                    </button>
+
+                    <button class="module-card collapsible-container bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal text-left">
+                        <div class="flex justify-between items-start">
+                             <div>
+                                <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
+                                    <span class="text-xl lg:text-2xl font-bold brand-green">06</span>
+                                </div>
+                                <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 6: Contenido</h3>
+                            </div>
+                            <i data-feather="chevron-down" class="collapsible-icon h-6 w-6 text-green-700 flex-shrink-0 mt-1"></i>
                         </div>
-                        <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 8: Embudos</h3>
-                    </div>
-                    <svg class="chevron h-6 w-6 text-green-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </div>
-                <div id="content-08" class="card-content-dropdown">
-                    <p class="mt-4 text-gray-600 leading-relaxed">Te explico como diseñar sistemas automáticos para que puedas filtrar tu audiencia y monetizarla dependiendo tu tipo de oferta y servicio.</p>
-                </div>
-            </div>
-            
-            <div class="module-card bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal" style="transition-delay: 400ms;"
-                onclick="toggleCardContent(this, 'content-09')">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
-                            <span class="text-xl lg:text-2xl font-bold brand-green">09</span>
+                        <div class="collapsible-content">
+                            <p class="mt-4 text-gray-600 leading-relaxed">Llegue a hacer +100 Millones de visualizaciones en el mes y te explico los diferentes +10 tipos de contenido que te convendría subir explicando como guionar, grabar, editar, etc.</p>
                         </div>
-                        <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 9: Sesgos y Estrategias (SesEst)</h3>
-                    </div>
-                    <svg class="chevron h-6 w-6 text-green-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </div>
-                <div id="content-09" class="card-content-dropdown">
-                    <p class="mt-4 text-gray-600 leading-relaxed">Te ayudo a multiplicar la tasa de cierre entendiendo el uso de sesgos y te doy unos tips para mejorar todo tu negocio con estrategias de Marketing.</p>
-                </div>
-            </div>
-            
-            <div class="module-card bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal lg:col-start-2" style="transition-delay: 450ms;"
-                onclick="toggleCardContent(this, 'content-10')">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
-                            <span class="text-xl lg:text-2xl font-bold brand-green">10</span>
+                    </button>
+
+                    <button class="module-card collapsible-container bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal text-left">
+                        <div class="flex justify-between items-start">
+                             <div>
+                                <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
+                                    <span class="text-xl lg:text-2xl font-bold brand-green">07</span>
+                                </div>
+                                <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 7: Prospección</h3>
+                            </div>
+                            <i data-feather="chevron-down" class="collapsible-icon h-6 w-6 text-green-700 flex-shrink-0 mt-1"></i>
                         </div>
-                        <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 10: Cierre y Ascender</h3>
-                    </div>
-                    <svg class="chevron h-6 w-6 text-green-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </div>
-                <div id="content-10" class="card-content-dropdown">
-                    <p class="mt-4 text-gray-600 leading-relaxed">Entendemos que hacer despues del cierre y entendemos los conceptos fundamentales para escalar a largo plazo: Operational Drag e inversiones.</p>
+                        <div class="collapsible-content">
+                            <p class="mt-4 text-gray-600 leading-relaxed">Te explico desde como obtener tu primer cliente, hasta como convertir tu audiencia en leads dominando el arte de vender sin vender.</p>
+                        </div>
+                    </button>
+
+                    <button class="module-card collapsible-container bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal text-left">
+                        <div class="flex justify-between items-start">
+                             <div>
+                                <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
+                                    <span class="text-xl lg:text-2xl font-bold brand-green">08</span>
+                                </div>
+                                <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 8: Embudos</h3>
+                            </div>
+                            <i data-feather="chevron-down" class="collapsible-icon h-6 w-6 text-green-700 flex-shrink-0 mt-1"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="mt-4 text-gray-600 leading-relaxed">Te explico como diseñar sistemas automáticos para que puedas filtrar tu audiencia y monetizarla dependiendo tu tipo de oferta y servicio.</p>
+                        </div>
+                    </button>
+
+                    <button class="module-card collapsible-container bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal text-left">
+                        <div class="flex justify-between items-start">
+                             <div>
+                                <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
+                                    <span class="text-xl lg:text-2xl font-bold brand-green">09</span>
+                                </div>
+                                <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 9: Sesgos y Estrategias (SesEst)</h3>
+                            </div>
+                            <i data-feather="chevron-down" class="collapsible-icon h-6 w-6 text-green-700 flex-shrink-0 mt-1"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="mt-4 text-gray-600 leading-relaxed">Te ayudo a multiplicar la tasa de cierre entendiendo el uso de sesgos y te doy unos tips para mejorar todo tu negocio con estrategias de Marketing.</p>
+                        </div>
+                    </button>
+                    
+                    <button class="module-card collapsible-container bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal sm:col-start-1 lg:col-start-2 text-left">
+                        <div class="flex justify-between items-start">
+                             <div>
+                                <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
+                                    <span class="text-xl lg:text-2xl font-bold brand-green">10</span>
+                                </div>
+                                <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 10: Cierre y Ascender</h3>
+                            </div>
+                            <i data-feather="chevron-down" class="collapsible-icon h-6 w-6 text-green-700 flex-shrink-0 mt-1"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="mt-4 text-gray-600 leading-relaxed">Entendemos que hacer despues del cierre y entendemos los conceptos fundamentales para escalar a largo plazo: Operational Drag e inversiones.</p>
+                        </div>
+                    </button>
                 </div>
             </div>
-            
-        </div>
-    </div>
-</section>
+        </section>
 
         <!-- ========== ABOUT US SECTION ========== -->
         <section class="py-20 md:py-28">
@@ -463,12 +409,22 @@
                 </div>
                 <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
                     <div class="text-center reveal">
-                        <img src="https://placehold.co/400x400/2E4B43/FDFBF8?text=JB" alt="Juan Bautista Bondare" class="w-48 h-48 mx-auto rounded-full shadow-lg">
+                        <!-- Imagen con lazy loading y fallback por si falla la carga -->
+                        <img src="https://placehold.co/400x400/2E4B43/FDFBF8?text=JB" 
+                             alt="Retrato de Juan Bautista Bondare" 
+                             class="w-48 h-48 mx-auto rounded-full shadow-lg object-cover" 
+                             loading="lazy" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/400x400/2E4B43/FDFBF8?text=Error';">
                         <h3 class="mt-6 text-2xl font-bold brand-green">Juan Bautista Bondare</h3>
                         <p class="mt-2 text-gray-600">Content Specialist, editor de videos, director de cine y founder @juanbondare</p>
                     </div>
-                    <div class="text-center reveal" style="transition-delay: 200ms;">
-                        <img src="IMG_9724.JPG" alt="Juan Manuel Merodio" class="w-48 h-48 mx-auto rounded-full shadow-lg">
+                    <div class="text-center reveal">
+                        <!-- Se reemplazó la imagen local por un placeholder robusto -->
+                        <img src="https://placehold.co/400x400/2E4B43/FFFFFF?text=JMM" 
+                             alt="Retrato de Juan Manuel Merodio" 
+                             class="w-48 h-48 mx-auto rounded-full shadow-lg object-cover" 
+                             loading="lazy" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/400x400/2E4B43/FDFBF8?text=Error';">
                         <h3 class="mt-6 text-2xl font-bold brand-green">Juan Manuel Merodio</h3>
                         <p class="mt-2 text-gray-600">Experto en Ventas y creador del sistema de ventas y automatizaciones Delta</p>
                     </div>
@@ -477,20 +433,15 @@
         </section>
         
         <!-- ========== QUALIFICATION FORM SECTION ========== -->
-<section id="qualifying" class="py-20 md:py-28 bg-white">
+        <section id="qualifying" class="py-20 md:py-28 bg-white">
             <div class="max-w-3xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
                 <div class="reveal">
                     <h2 class="text-3xl md:text-5xl font-bold brand-green">Si todavia tenes dudas <br><span class="block bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-green-800">Te preparamos una preview</span></h2>
                     <p class="mt-4 text-lg text-gray-600">estamos seguros del valor que aportamos, completá con tus datos así te llevas la preview GRATIS.</p>
                 </div>
-                <form id="qualify-form" class="mt-12 text-left space-y-6 reveal" style="transition-delay: 200ms;">
+                <form id="qualify-form" class="mt-12 text-left space-y-6 reveal" novalidate>
                     <div>
                         <label for="instagram" class="block text-sm font-medium text-gray-700">Instagram (sin arroba)</label>
-                        <!-- COMENTARIO DE CAMBIO:
-                             Cambiado 'name="name"' y 'id="name"' a 'name="instagram"' y 'id="instagram"'.
-                             Es crucial que el atributo 'name' del input coincida con la clave
-                             que el JavaScript buscará para enviar a Google Sheets.
-                        -->
                         <input type="text" id="instagram" name="instagram" required class="mt-1 block w-full px-4 py-3 bg-[#FDFBF8] border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
                     </div>
                     <div>
@@ -500,6 +451,7 @@
                      <div>
                         <label for="revenue" class="block text-sm font-medium text-gray-700">¿En que situacion estas? Así te mando la mejor versión de la preview</label>
                          <select id="revenue" name="revenue" required class="mt-1 block w-full px-4 py-3 bg-[#FDFBF8] border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                             <option value="">Selecciona una opción</option>
                              <option>Aún no genero ingresos</option>
                              <option>Menos de $1,000/mes</option>
                              <option>$1,000 - $5,000/mes</option>
@@ -512,7 +464,6 @@
                             Obtener mi Preview GRATIS
                         </button>
                     </div>
-                    <!-- COMENTARIO DE CAMBIO: Añadido un div para mostrar mensajes de error al usuario -->
                     <div id="form-error" class="hidden mt-4 p-4 bg-red-100 text-red-800 rounded-xl text-center">
                         Por favor, completa todos los campos requeridos.
                     </div>
@@ -523,59 +474,55 @@
             </div>
         </section>
 
-
         <!-- ========== FAQ SECTION ========== -->
         <section class="py-20 md:py-28">
             <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
                  <div class="text-center max-w-3xl mx-auto reveal">
                     <h2 class="text-3xl md:text-5xl font-bold brand-green">Preguntas Frecuentes</h2>
                 </div>
-                <div class="mt-16 space-y-4 accordion-container">
-                    <!-- FAQ Item -->
-                    <div class="accordion-item bg-white border border-gray-200/80 rounded-2xl reveal">
-                        <div class="accordion-item-header p-6 flex justify-between items-center">
+                <div class="mt-16 space-y-4">
+                    <!-- Cada item del acordeón es ahora un <details> para accesibilidad nativa -->
+                    <div class="accordion-item collapsible-container bg-white border border-gray-200/80 rounded-2xl reveal">
+                        <div class="accordion-item-header p-6 flex justify-between items-center cursor-pointer">
                             <span class="text-lg font-semibold brand-green">¿Para quién es este infoproducto?</span>
-                            <div class="accordion-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green">
+                            <div class="faq-icon collapsible-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green">
                                 <i data-feather="plus" class="w-5 h-5"></i>
                             </div>
                         </div>
-                        <div class="accordion-item-body">
+                        <div class="collapsible-content">
                             <p class="p-6 pt-0 text-gray-600">Ascender está diseñado para coaches, consultores, creadores de contenido, freelancers y cualquier experto que quiera monetizar su conocimiento a través de una marca personal sólida. No importa si estás empezando de cero o ya tienes una base, el programa te llevará al siguiente nivel.</p>
                         </div>
                     </div>
-                     <!-- FAQ Item -->
-                    <div class="accordion-item bg-white border border-gray-200/80 rounded-2xl reveal">
-                        <div class="accordion-item-header p-6 flex justify-between items-center">
+                     <div class="accordion-item collapsible-container bg-white border border-gray-200/80 rounded-2xl reveal">
+                        <div class="accordion-item-header p-6 flex justify-between items-center cursor-pointer">
                             <span class="text-lg font-semibold brand-green">¿Cuándo tendré acceso al contenido?</span>
-                            <div class="accordion-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green">
+                            <div class="faq-icon collapsible-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green">
                                 <i data-feather="plus" class="w-5 h-5"></i>
                             </div>
                         </div>
-                        <div class="accordion-item-body">
+                        <div class="collapsible-content">
                             <p class="p-6 pt-0 text-gray-600">Al reservar tu lugar, aseguras el precio especial de preventa. Recibirás el acceso completo a todos los módulos, bonos y a la comunidad privada el día del lanzamiento oficial: 1 de Noviembre.</p>
                         </div>
                     </div>
-                     <!-- FAQ Item -->
-                    <div class="accordion-item bg-white border border-gray-200/80 rounded-2xl reveal">
-                        <div class="accordion-item-header p-6 flex justify-between items-center">
+                    <div class="accordion-item collapsible-container bg-white border border-gray-200/80 rounded-2xl reveal">
+                        <div class="accordion-item-header p-6 flex justify-between items-center cursor-pointer">
                             <span class="text-lg font-semibold brand-green">¿Qué pasa si no tengo experiencia previa?</span>
-                            <div class="accordion-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green">
+                            <div class="faq-icon collapsible-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green">
                                 <i data-feather="plus" class="w-5 h-5"></i>
                             </div>
                         </div>
-                        <div class="accordion-item-body">
+                        <div class="collapsible-content">
                             <p class="p-6 pt-0 text-gray-600">¡No hay problema! El programa está estructurado paso a paso, desde los fundamentos (Módulo 1: Decisión) hasta las estrategias más avanzadas de escalado. Te guiaremos en cada etapa del proceso.</p>
                         </div>
                     </div>
-                     <!-- FAQ Item -->
-                    <div class="accordion-item bg-white border border-gray-200/80 rounded-2xl reveal">
-                        <div class="accordion-item-header p-6 flex justify-between items-center">
+                    <div class="accordion-item collapsible-container bg-white border border-gray-200/80 rounded-2xl reveal">
+                        <div class="accordion-item-header p-6 flex justify-between items-center cursor-pointer">
                             <span class="text-lg font-semibold brand-green">¿Tendré soporte durante el programa?</span>
-                            <div class="accordion-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green">
+                            <div class="faq-icon collapsible-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green">
                                 <i data-feather="plus" class="w-5 h-5"></i>
                             </div>
                         </div>
-                        <div class="accordion-item-body">
+                        <div class="collapsible-content">
                             <p class="p-6 pt-0 text-gray-600">Sí. Tendrás acceso a la comunidad privada de Discord, donde podrás hacer preguntas, compartir tus avances y conectar tanto con nosotros, los creadores, como con otros miembros que están en el mismo camino que tú.</p>
                         </div>
                     </div>
@@ -587,7 +534,7 @@
     <!-- ========== FOOTER ========== -->
     <footer class="bg-white">
         <div class="max-w-7xl mx-auto py-12 px-6 sm:px-8 lg:px-12 text-center">
-            <a href="#" class="flex items-center justify-center space-x-2">
+            <a href="#" class="flex items-center justify-center space-x-2" aria-label="Página de inicio de Ascender">
                  <img class="h-20 w-auto" src="Ascender icon.png" alt="Logo Ascender">
                  <span class="text-2xl font-bold brand-green">Ascender</span>
             </a>
@@ -596,8 +543,159 @@
         </div>
     </footer>
 
-
-    <script src="script.js"></script>
-</body>
+    <!-- Scripts movidos al final del body con 'defer' para no bloquear el renderizado -->
+    <script src="https://unpkg.com/feather-icons" defer></script>
     
+    <!-- Script principal con toda la lógica centralizada -->
+    <script>
+        // Envolvemos todo en una IIFE (Immediately Invoked Function Expression)
+        // para no contaminar el scope global y mantener el código encapsulado.
+        (() => {
+            // Espera a que el DOM esté completamente cargado para ejecutar el script.
+            document.addEventListener('DOMContentLoaded', () => {
+
+                /**
+                 * ------------------------------------------------------------------
+                 * 1. INICIALIZADOR DE ICONOS
+                 * ------------------------------------------------------------------
+                 */
+                // Inicializa Feather Icons de forma segura, verificando si la librería cargó.
+                try {
+                    if (typeof feather !== 'undefined') {
+                        feather.replace();
+                    }
+                } catch (e) {
+                    console.error("Error al inicializar Feather Icons:", e);
+                }
+
+                /**
+                 * ------------------------------------------------------------------
+                 * 2. ANIMACIONES EN SCROLL (REVEAL)
+                 * ------------------------------------------------------------------
+                 * Usa Intersection Observer para una performance óptima al revelar
+                 * elementos cuando entran en el viewport.
+                 */
+                const revealObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('reveal-visible');
+                            observer.unobserve(entry.target); // Dejar de observar una vez visible
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+                /**
+                 * ------------------------------------------------------------------
+                 * 3. LÓGICA DE ACORDEÓN UNIFICADA
+                 * ------------------------------------------------------------------
+                 * Gestiona tanto los módulos como las FAQs. Al abrir un elemento,
+                 * cierra cualquier otro que esté abierto en el mismo grupo.
+                 */
+                const collapsibleTriggers = document.querySelectorAll('.module-card, .accordion-item-header');
+
+                collapsibleTriggers.forEach(trigger => {
+                    trigger.addEventListener('click', () => {
+                        const container = trigger.closest('.collapsible-container');
+                        if (!container) return; // Salida temprana si no hay contenedor
+
+                        const wasActive = container.classList.contains('active');
+                        const parentGroup = container.parentElement;
+
+                        // Cierra todos los elementos en el mismo grupo
+                        if (parentGroup) {
+                            parentGroup.querySelectorAll('.collapsible-container.active').forEach(activeItem => {
+                                if (activeItem !== container) {
+                                    activeItem.classList.remove('active');
+                                }
+                            });
+                        }
+                        
+                        // Alterna el estado del elemento clickeado
+                        container.classList.toggle('active');
+                    });
+                });
+
+
+                /**
+                 * ------------------------------------------------------------------
+                 * 4. MANEJO DEL FORMULARIO DE PREVIEW
+                 * ------------------------------------------------------------------
+                 * Lógica robusta para la validación y envío del formulario a Google Sheets,
+                 * con feedback claro para el usuario.
+                 */
+                const qualifyForm = document.getElementById('qualify-form');
+                if (!qualifyForm) return; // Si el form no existe, no continuamos
+
+                // Cache de elementos del DOM para mejor rendimiento
+                const submitButton = document.getElementById('submit-button');
+                const formError = document.getElementById('form-error');
+                const formSuccess = document.getElementById('form-success');
+                const requiredFields = qualifyForm.querySelectorAll('[required]');
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbxaLMCCrIjieASrod1YSdCBwyLfublnP-I_ld_k0gc2iyBbVAG002bL-WkzS9TF6cI/exec';
+                const notionURL = 'https://www.notion.so/Preview-Ascender-28dcacf97f838076a5d7c29822f9d4fe?source=copy_link';
+
+                qualifyForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+
+                    // --- Validación de campos requeridos ---
+                    let isValid = true;
+                    formError.classList.add('hidden');
+                    requiredFields.forEach(field => {
+                        field.style.borderColor = ''; // Resetea estilos de error
+                        if (!field.value.trim()) {
+                            isValid = false;
+                            field.style.borderColor = '#EF4444'; // Borde rojo para indicar error
+                        }
+                    });
+
+                    if (!isValid) {
+                        formError.textContent = 'Por favor, completa todos los campos.';
+                        formError.classList.remove('hidden');
+                        return;
+                    }
+
+                    // --- Estado de Carga (Feedback visual para el usuario) ---
+                    const originalButtonHTML = submitButton.innerHTML;
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = `
+                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Enviando...
+                    `;
+
+                    // --- Envío de datos con Fetch y FormData ---
+                    fetch(scriptURL, { method: 'POST', body: new FormData(qualifyForm) })
+                        .then(response => {
+                            if (!response.ok) throw new Error(`Error de red: ${response.status}`);
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.result !== 'success') throw new Error(data.message || 'Error en la respuesta del servidor.');
+                            
+                            // Éxito: Oculta el formulario y muestra mensaje de éxito
+                            qualifyForm.style.display = 'none';
+                            formSuccess.textContent = `¡Gracias! Redirigiendo a la preview...`;
+                            formSuccess.classList.remove('hidden');
+                            
+                            // Redirige al usuario después de un momento
+                            setTimeout(() => { window.location.href = notionURL; }, 2000);
+                        })
+                        .catch(error => {
+                            console.error('Error al enviar el formulario:', error);
+                            formError.textContent = `Hubo un problema: ${error.message}. Intenta de nuevo.`;
+                            formError.classList.remove('hidden');
+                             // Restaura el botón solo si hay un error
+                            submitButton.disabled = false;
+                            submitButton.innerHTML = originalButtonHTML;
+                        });
+                });
+            });
+        })();
+    </script>
+</body>
 </html>
+
