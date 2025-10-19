@@ -59,6 +59,36 @@
             transform: translateY(30px);
             transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
+                .brand-green {
+            color: var(--color-brand-green);
+        }
+        
+        /* Estilos del Desplegable (Dropdown dentro de la Tarjeta) */
+        /* Estilo para el contenido colapsable del acordeón */
+.card-content-dropdown {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                margin-top 0.3s ease-out;
+}
+
+/* Estilo para la tarjeta cuando está activa */
+.module-card.active .card-content-dropdown {
+    /* Un valor suficientemente grande para todo tu contenido */
+    max-height: 500px; 
+    transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Estilo para el icono de chevron */
+.module-card .chevron {
+    transition: transform 0.3s ease;
+}
+
+/* Rotación del chevron cuando la tarjeta está activa */
+.module-card.active .chevron {
+    transform: rotate(180deg);
+}
+
         
         .reveal-visible {
             opacity: 1;
@@ -221,7 +251,7 @@
                         <p class="font-semibold text-lg text-green-700">Oferta de reserva por tiempo limitado</p>
                     </div>
 
-                    <a href="#" class="w-full max-w-md mx-auto block bg-brand-green text-white font-bold text-lg px-10 py-5 rounded-full hover:bg-brand-green-dark transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-green-900/30">
+                    <a href="https://unlock.ascender.uno" class="w-full max-w-md mx-auto block bg-brand-green text-white font-bold text-lg px-10 py-5 rounded-full hover:bg-brand-green-dark transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-green-900/30">
                         RESERVAR YA Y AHORRAR
                     </a>
                     <p class="mt-6 text-sm text-gray-500">Pago 100% seguro. Acceso completo el 1 de Noviembre.</p>
@@ -229,97 +259,200 @@
             </div>
         </section>
 
-       <section class="py-20 md:py-28 bg-white">
-            <div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
-                <div class="text-center max-w-3xl mx-auto reveal">
-                    <h2 class="text-3xl md:text-5xl font-bold brand-green leading-tight">El Camino para Ascender: <br><span class="block bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-green-800 mt-2">Estos son los Módulos</span></h2>
-                    <p class="mt-4 text-lg text-gray-600">Un plan de estudios estructurado para llevarte desde cero a tu marca personal.</p>
-                </div>
+<section class="py-20 md:py-28 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12">
+        <div class="text-center max-w-3xl mx-auto reveal">
+            <h2 class="text-3xl md:text-5xl font-bold brand-green leading-tight">El Camino para Ascender: <br><span class="block bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-green-800 mt-2">Estos son los Módulos</span></h2>
+            <p class="mt-4 text-lg text-gray-600">Un plan de estudios estructurado para llevarte desde cero a tu marca personal. (¡Haz clic en las tarjetas para ver el detalle!)</p>
+        </div>
+        
+        <div class="mt-16 grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+            
+            <div class="module-card bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal" 
+                onclick="toggleCardContent(this, 'content-01')">
                 
-                <div class="mt-16 grid grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                    <!-- Module Card -->
-                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal transform hover:-translate-y-2 transition-transform duration-300">
-                        <div class="flex items-center justify-center h-14 w-14 bg-white border border-gray-200/80 rounded-2xl mb-5 shadow-sm">
-                            <span class="text-2xl font-bold brand-green">01</span>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
+                            <span class="text-xl lg:text-2xl font-bold brand-green">01</span>
                         </div>
-                        <h3 class="text-xl font-bold brand-green">Módulo 1: Decisión</h3>
-                        <p class="mt-2 text-gray-600">Explico la historia detrás de Ascender, hablamos sobre la mentalidad que aborda tener un negocio y vamos a crear un propósito juntos asi dejas de procrastinar.</p>
+                        <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 1: Decisión</h3>
                     </div>
-                    <!-- Module Card -->
-                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal transform hover:-translate-y-2 transition-transform duration-300" style="transition-delay: 50ms;">
-                        <div class="flex items-center justify-center h-14 w-14 bg-white border border-gray-200/80 rounded-2xl mb-5 shadow-sm">
-                            <span class="text-2xl font-bold brand-green">02</span>
-                        </div>
-                        <h3 class="text-xl font-bold brand-green">Módulo 2: Fundaciones</h3>
-                        <p class="mt-2 text-gray-600">Entendemos los fundamentos para empezar una marca personal tomando acción y riesgos que nos llevarán hasta nuestra meta. Entendemos nuestro sueño y lo visualizamos. </p>
-                    </div>
-                    <!-- Module Card -->
-                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal transform hover:-translate-y-2 transition-transform duration-300" style="transition-delay: 100ms;">
-                        <div class="flex items-center justify-center h-14 w-14 bg-white border border-gray-200/80 rounded-2xl mb-5 shadow-sm">
-                            <span class="text-2xl font-bold brand-green">03</span>
-                        </div>
-                        <h3 class="text-xl font-bold brand-green">Módulo 3: Nicho</h3>
-                        <p class="mt-2 text-gray-600">En ves de gritar como loco, te explico y te muestro como podes hablarle a las personas correctas pero esta ves hablando bajo y con autoridad.</p>
-                    </div>
-                    <!-- Module Card -->
-                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal transform hover:-translate-y-2 transition-transform duration-300" style="transition-delay: 150ms;">
-                        <div class="flex items-center justify-center h-14 w-14 bg-white border border-gray-200/80 rounded-2xl mb-5 shadow-sm">
-                            <span class="text-2xl font-bold brand-green">04</span>
-                        </div>
-                        <h3 class="text-xl font-bold brand-green">Módulo 4: Servicios</h3>
-                        <p class="mt-2 text-gray-600">Empaquetamos tu conocimiento de manera clave para escalar de la mejor manera posible adaptado a donde estas hoy a donde querés estar mañana..</p>
-                    </div>
-                    <!-- Module Card -->
-                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal transform hover:-translate-y-2 transition-transform duration-300" style="transition-delay: 200ms;">
-                        <div class="flex items-center justify-center h-14 w-14 bg-white border border-gray-200/80 rounded-2xl mb-5 shadow-sm">
-                            <span class="text-2xl font-bold brand-green">05</span>
-                        </div>
-                        <h3 class="text-xl font-bold brand-green">Módulo 5: Offers</h3>
-                        <p class="mt-2 text-gray-600">Te explico como ofrecer tus servicios conviertiendolos en transformaciones reales para que nadie pueda decirte que no</p>
-                    </div>
-                    <!-- Module Card -->
-                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal transform hover:-translate-y-2 transition-transform duration-300" style="transition-delay: 250ms;">
-                        <div class="flex items-center justify-center h-14 w-14 bg-white border border-gray-200/80 rounded-2xl mb-5 shadow-sm">
-                            <span class="text-2xl font-bold brand-green">06</span>
-                        </div>
-                        <h3 class="text-xl font-bold brand-green">Módulo 6: Contenido</h3>
-                        <p class="mt-2 text-gray-600">Llegue a hacer +100 Millones de visualizaciones en el mes y te explico los diferentes +10 tipos de contenido que te convendría subir explicando como guionar, grabar, editar, etc.</p>
-                    </div>
-                    <!-- Module Card -->
-                     <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal transform hover:-translate-y-2 transition-transform duration-300" style="transition-delay: 300ms;">
-                        <div class="flex items-center justify-center h-14 w-14 bg-white border border-gray-200/80 rounded-2xl mb-5 shadow-sm">
-                            <span class="text-2xl font-bold brand-green">07</span>
-                        </div>
-                        <h3 class="text-xl font-bold brand-green">Módulo 7: Prospección</h3>
-                        <p class="mt-2 text-gray-600">Te explico desde como obtener tu primer cliente, hasta como convertir tu audiencia en leads dominando el arte de vender sin vender.</p>
-                    </div>
-                     <!-- Module Card -->
-                     <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal transform hover:-translate-y-2 transition-transform duration-300" style="transition-delay: 350ms;">
-                        <div class="flex items-center justify-center h-14 w-14 bg-white border border-gray-200/80 rounded-2xl mb-5 shadow-sm">
-                            <span class="text-2xl font-bold brand-green">08</span>
-                        </div>
-                        <h3 class="text-xl font-bold brand-green">Módulo 8: Embudos</h3>
-                        <p class="mt-2 text-gray-600">Te explico como diseñar sistemas automáticos para que puedas filtrar tu audiencia y monetizarla dependiendo tu tipo de oferta y servicio.</p>
-                    </div>
-                     <!-- Module Card -->
-                     <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal transform hover:-translate-y-2 transition-transform duration-300" style="transition-delay: 400ms;">
-                        <div class="flex items-center justify-center h-14 w-14 bg-white border border-gray-200/80 rounded-2xl mb-5 shadow-sm">
-                            <span class="text-2xl font-bold brand-green">09</span>
-                        </div>
-                        <h3 class="text-xl font-bold brand-green">Módulo 9: Sesgos y Estrategias (SesEst)</h3>
-                        <p class="mt-2 text-gray-600">Te ayudo a multiplicar la tasa de cierre entendiendo el uso de sesgos y te doy unos tips para mejorar todo tu negocio con estrategias de Marketing.</p>
-                    </div>
-                     <!-- Module Card -->
-                     <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal transform hover:-translate-y-2 transition-transform duration-300" style="transition-delay: 450ms;">
-                        <div class="flex items-center justify-center h-14 w-14 bg-white border border-gray-200/80 rounded-2xl mb-5 shadow-sm">
-                            <span class="text-2xl font-bold brand-green">10</span>
-                        </div>
-                        <h3 class="text-xl font-bold brand-green">Módulo 10: Cierre y Ascender</h3>
-                        <p class="mt-2 text-gray-600">Entendemos que hacer despues del cierre y entendemos los conceptos fundamentales para escalar a largo plazo: Operational Drag e inversiones.</p>
-                    </div>
+                    <svg class="chevron h-6 w-6 text-green-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+
+                <div id="content-01" class="card-content-dropdown">
+                    <p class="mt-4 text-gray-600 leading-relaxed">Explico la historia detrás de Ascender, hablamos sobre la mentalidad que aborda tener un negocio y vamos a crear un propósito juntos asi dejas de procrastinar.</p>
                 </div>
             </div>
-        </section>
+            
+            <div class="module-card bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal" style="transition-delay: 50ms;"
+                onclick="toggleCardContent(this, 'content-02')">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
+                            <span class="text-xl lg:text-2xl font-bold brand-green">02</span>
+                        </div>
+                        <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 2: Fundaciones</h3>
+                    </div>
+                    <svg class="chevron h-6 w-6 text-green-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div id="content-02" class="card-content-dropdown">
+                    <p class="mt-4 text-gray-600 leading-relaxed">Entendemos los fundamentos para empezar una marca personal tomando acción y riesgos que nos llevarán hasta nuestra meta. Entendemos nuestro sueño y lo visualizamos. </p>
+                </div>
+            </div>
+            
+            <div class="module-card bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal" style="transition-delay: 100ms;"
+                onclick="toggleCardContent(this, 'content-03')">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
+                            <span class="text-xl lg:text-2xl font-bold brand-green">03</span>
+                        </div>
+                        <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 3: Nicho</h3>
+                    </div>
+                    <svg class="chevron h-6 w-6 text-green-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div id="content-03" class="card-content-dropdown">
+                    <p class="mt-4 text-gray-600 leading-relaxed">En ves de gritar como loco, te explico y te muestro como podes hablarle a las personas correctas pero esta ves hablando bajo y con autoridad.</p>
+                </div>
+            </div>
+            
+            <div class="module-card bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal" style="transition-delay: 150ms;"
+                onclick="toggleCardContent(this, 'content-04')">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
+                            <span class="text-xl lg:text-2xl font-bold brand-green">04</span>
+                        </div>
+                        <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 4: Servicios</h3>
+                    </div>
+                    <svg class="chevron h-6 w-6 text-green-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div id="content-04" class="card-content-dropdown">
+                    <p class="mt-4 text-gray-600 leading-relaxed">Empaquetamos tu conocimiento de manera clave para escalar de la mejor manera posible adaptado a donde estas hoy a donde querés estar mañana..</p>
+                </div>
+            </div>
+            
+            <div class="module-card bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal" style="transition-delay: 200ms;"
+                onclick="toggleCardContent(this, 'content-05')">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
+                            <span class="text-xl lg:text-2xl font-bold brand-green">05</span>
+                        </div>
+                        <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 5: Offers</h3>
+                    </div>
+                    <svg class="chevron h-6 w-6 text-green-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div id="content-05" class="card-content-dropdown">
+                    <p class="mt-4 text-gray-600 leading-relaxed">Te explico como ofrecer tus servicios conviertiendolos en transformaciones reales para que nadie pueda decirte que no</p>
+                </div>
+            </div>
+            
+            <div class="module-card bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal" style="transition-delay: 250ms;"
+                onclick="toggleCardContent(this, 'content-06')">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
+                            <span class="text-xl lg:text-2xl font-bold brand-green">06</span>
+                        </div>
+                        <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 6: Contenido</h3>
+                    </div>
+                    <svg class="chevron h-6 w-6 text-green-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div id="content-06" class="card-content-dropdown">
+                    <p class="mt-4 text-gray-600 leading-relaxed">Llegue a hacer +100 Millones de visualizaciones en el mes y te explico los diferentes +10 tipos de contenido que te convendría subir explicando como guionar, grabar, editar, etc.</p>
+                </div>
+            </div>
+            
+            <div class="module-card bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal" style="transition-delay: 300ms;"
+                onclick="toggleCardContent(this, 'content-07')">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
+                            <span class="text-xl lg:text-2xl font-bold brand-green">07</span>
+                        </div>
+                        <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 7: Prospección</h3>
+                    </div>
+                    <svg class="chevron h-6 w-6 text-green-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div id="content-07" class="card-content-dropdown">
+                    <p class="mt-4 text-gray-600 leading-relaxed">Te explico desde como obtener tu primer cliente, hasta como convertir tu audiencia en leads dominando el arte de vender sin vender.</p>
+                </div>
+            </div>
+            
+            <div class="module-card bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal" style="transition-delay: 350ms;"
+                onclick="toggleCardContent(this, 'content-08')">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
+                            <span class="text-xl lg:text-2xl font-bold brand-green">08</span>
+                        </div>
+                        <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 8: Embudos</h3>
+                    </div>
+                    <svg class="chevron h-6 w-6 text-green-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div id="content-08" class="card-content-dropdown">
+                    <p class="mt-4 text-gray-600 leading-relaxed">Te explico como diseñar sistemas automáticos para que puedas filtrar tu audiencia y monetizarla dependiendo tu tipo de oferta y servicio.</p>
+                </div>
+            </div>
+            
+            <div class="module-card bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal" style="transition-delay: 400ms;"
+                onclick="toggleCardContent(this, 'content-09')">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
+                            <span class="text-xl lg:text-2xl font-bold brand-green">09</span>
+                        </div>
+                        <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 9: Sesgos y Estrategias (SesEst)</h3>
+                    </div>
+                    <svg class="chevron h-6 w-6 text-green-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div id="content-09" class="card-content-dropdown">
+                    <p class="mt-4 text-gray-600 leading-relaxed">Te ayudo a multiplicar la tasa de cierre entendiendo el uso de sesgos y te doy unos tips para mejorar todo tu negocio con estrategias de Marketing.</p>
+                </div>
+            </div>
+            
+            <div class="module-card bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal lg:col-start-2" style="transition-delay: 450ms;"
+                onclick="toggleCardContent(this, 'content-10')">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
+                            <span class="text-xl lg:text-2xl font-bold brand-green">10</span>
+                        </div>
+                        <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 10: Cierre y Ascender</h3>
+                    </div>
+                    <svg class="chevron h-6 w-6 text-green-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+                <div id="content-10" class="card-content-dropdown">
+                    <p class="mt-4 text-gray-600 leading-relaxed">Entendemos que hacer despues del cierre y entendemos los conceptos fundamentales para escalar a largo plazo: Operational Drag e inversiones.</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
 
         <!-- ========== ABOUT US SECTION ========== -->
         <section class="py-20 md:py-28">
@@ -335,7 +468,7 @@
                         <p class="mt-2 text-gray-600">Content Specialist, editor de videos, director de cine y founder @juanbondare</p>
                     </div>
                     <div class="text-center reveal" style="transition-delay: 200ms;">
-                        <img src="https://placehold.co/400x400/2E4B43/FDFBF8?text=JM" alt="Juan Manuel Merodio" class="w-48 h-48 mx-auto rounded-full shadow-lg">
+                        <img src="IMG_9724.JPG" alt="Juan Manuel Merodio" class="w-48 h-48 mx-auto rounded-full shadow-lg">
                         <h3 class="mt-6 text-2xl font-bold brand-green">Juan Manuel Merodio</h3>
                         <p class="mt-2 text-gray-600">Experto en Ventas y creador del sistema de ventas y automatizaciones Delta</p>
                     </div>
