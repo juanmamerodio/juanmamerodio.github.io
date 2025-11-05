@@ -410,17 +410,17 @@
                 <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
                     <div class="text-center reveal">
                         <!-- Imagen con lazy loading y fallback por si falla la carga -->
-                        <img src="https://placehold.co/400x400/2E4B43/FDFBF8?text=JB" 
+                        <img src="juanbondareprofilephoto.jpg" 
                              alt="Retrato de Juan Bautista Bondare" 
                              class="w-48 h-48 mx-auto rounded-full shadow-lg object-cover" 
                              loading="lazy" 
                              onerror="this.onerror=null;this.src='https://placehold.co/400x400/2E4B43/FDFBF8?text=Error';">
                         <h3 class="mt-6 text-2xl font-bold brand-green">Juan Bautista Bondare</h3>
-                        <p class="mt-2 text-gray-600">Content Specialist, editor de videos, director de cine y founder @juanbondare</p>
+                        <p class="mt-2 text-gray-600">Content Specialist, editor de videos, director de cortos profesional y founder @juanbondare</p>
                     </div>
                     <div class="text-center reveal">
                         <!-- Se reemplazó la imagen local por un placeholder robusto -->
-                        <img src="https://placehold.co/400x400/2E4B43/FFFFFF?text=JMM" 
+                        <img src="IMG_9724.JPG" 
                              alt="Retrato de Juan Manuel Merodio" 
                              class="w-48 h-48 mx-auto rounded-full shadow-lg object-cover" 
                              loading="lazy" 
@@ -585,14 +585,6 @@
                 }, { threshold: 0.1 });
 
                 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-                /**
-                 * ------------------------------------------------------------------
-                 * 3. LÓGICA DE ACORDEÓN UNIFICADA
-                 * ------------------------------------------------------------------
-                 * Gestiona tanto los módulos como las FAQs. Al abrir un elemento,
-                 * cierra cualquier otro que esté abierto en el mismo grupo.
-                 */
                 const collapsibleTriggers = document.querySelectorAll('.module-card, .accordion-item-header');
 
                 collapsibleTriggers.forEach(trigger => {
@@ -617,14 +609,6 @@
                     });
                 });
 
-
-                /**
-                 * ------------------------------------------------------------------
-                 * 4. MANEJO DEL FORMULARIO DE PREVIEW
-                 * ------------------------------------------------------------------
-                 * Lógica robusta para la validación y envío del formulario a Google Sheets,
-                 * con feedback claro para el usuario.
-                 */
                 const qualifyForm = document.getElementById('qualify-form');
                 if (!qualifyForm) return; // Si el form no existe, no continuamos
 
@@ -634,7 +618,7 @@
                 const formSuccess = document.getElementById('form-success');
                 const requiredFields = qualifyForm.querySelectorAll('[required]');
                 const scriptURL = 'https://script.google.com/macros/s/AKfycbxaLMCCrIjieASrod1YSdCBwyLfublnP-I_ld_k0gc2iyBbVAG002bL-WkzS9TF6cI/exec';
-                const notionURL = 'https://www.notion.so/Preview-Ascender-28dcacf97f838076a5d7c29822f9d4fe?source=copy_link';
+                const notionURL = 'https://ascenderpreview.super.site';
 
                 qualifyForm.addEventListener('submit', (event) => {
                     event.preventDefault();
