@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ascender - Tu Marca Personal a +10k/mes</title>
+    <meta name="description" content="Ascender: El paso a paso definitivo para construir, lanzar y escalar tu Marca Personal. Dejá de ser uno más.">
+    <title>Ascender | Tu Marca Personal a otro nivel</title>
 
-    <!-- Preconexión para fuentes y assets críticos, mejorando la velocidad de carga -->
+    <!-- Preconexión para velocidad -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Carga de la fuente 'Inter'. Se eliminó 'Poppins' que no se utilizaba. -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Fuente Inter (Profesional, limpia, moderna) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="Ascender icon.png">
@@ -18,674 +19,719 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Configuración de Tailwind y Variables -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#2E4B43',
+                            dark: '#1F332D',
+                            light: '#E8F5E9',
+                            gold: '#D4AF37', // Un toque de dorado para valor percibido
+                        },
+                        bg: {
+                            main: '#FDFBF8',
+                            alt: '#F7F5F2'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 20px rgba(46, 75, 67, 0.15)',
+                        'card': '0 10px 30px -10px rgba(0, 0, 0, 0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        /* Estilos personalizados y optimizados */
+        h1,h2{
+            line-height: -2px;
+        }
+        /* Estilos base y utilidades */
         :root {
-            /* Definición de variables CSS para colores y transiciones consistentes */
-            --brand-green: #2E4B43;
-            --brand-green-dark: #243a34;
-            --background-color: #FDFBF8;
-            --text-color: #1a202c;
-            --transition-duration: 0.4s;
-            --transition-timing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            letter-spacing: -0.6px;
+            background-color: #FDFBF8;
+            color: #1a202c;
+            /* Anti-aliasing para que se vea nítido en todos lados */
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Clases de utilidad para la marca */
-        .brand-green { color: var(--brand-green); }
-        .bg-brand-green { background-color: var(--brand-green); }
-        .border-brand-green { border-color: var(--brand-green); }
-        .hover\:bg-brand-green-dark:hover { background-color: var(--brand-green-dark); }
+        /* Scrollbar personalizada (detalle premium) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FDFBF8;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2E4B43;
+            border-radius: 4px;
+        }
 
-        /* Estilo optimizado para el contenedor de video responsive */
-        .video-container {
+        /* Animaciones */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Video Container Responsivo y con Sombra */
+        .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* Aspect Ratio 16:9 */
+            padding-bottom: 56.25%; /* 16:9 */
             height: 0;
             overflow: hidden;
-            border-radius: 1.5rem;
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 1rem;
+            box-shadow: 0 20px 40px -5px rgba(46, 75, 67, 0.25);
+            border: 1px solid rgba(46, 75, 67, 0.1);
         }
-
-        .video-container iframe {
+        .video-wrapper iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
         }
-        
-        /* Animaciones de entrada (Scroll-reveal) */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity var(--transition-duration) var(--transition-timing), 
-                        transform var(--transition-duration) var(--transition-timing);
-        }
-        
-        .reveal-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
 
-        /* Estilos unificados para Acordeones y Tarjetas Desplegables */
+        /* Acordeones (Lógica CSS pura para transición suave) */
         .collapsible-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-out;
+            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
         }
-        .collapsible-container.active .collapsible-content {
-            max-height: 1000px; /* Un valor suficientemente grande */
-            transition: max-height 0.7s ease-in-out;
+        .active .collapsible-content {
+            max-height: 500px; /* Altura suficiente */
+            transition: max-height 0.5s ease-in-out;
         }
-        .collapsible-container .collapsible-icon {
+        .collapsible-icon {
             transition: transform 0.3s ease;
         }
-        .collapsible-container.active .collapsible-icon {
+        .active .collapsible-icon {
             transform: rotate(180deg);
         }
-        .faq-icon.collapsible-icon {
-             transition: transform 0.3s ease;
-        }
-        .collapsible-container.active .faq-icon.collapsible-icon {
-            transform: rotate(45deg);
+
+        /* Gradiente de texto */
+        .text-gradient {
+            background: linear-gradient(to right, #2E4B43, #4a7a6c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
-<body class="antialiased">
+<body>
+
+    <!-- Barrita de Urgencia (Sesgo de Escasez - Módulo 9) -->
+    <div class="bg-brand-green text-white text-xs md:text-sm py-2 text-center font-medium tracking-wide">
+        ⚠️ ATENCIÓN: Solo quedan <span class="font-bold text-yellow-300">100 cupos</span> de reserva a este precio. El 18 de Diciembre cerramos.
+    </div>
 
     <!-- ========== HEADER ========== -->
-    <header class="sticky top-0 z-50 bg-[#FDFBF8]/80 backdrop-blur-lg border-b border-gray-200/50">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <header class="sticky top-0 z-50 bg-[#FDFBF8]/90 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <a href="#" class="flex items-center space-x-2" aria-label="Página de inicio de Ascender">
-                    <img class="h-20 w-auto" src="Ascender icon.png" alt="Logo Ascender">
-                    <span class="text-2xl font-bold brand-green">Ascender</span>
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 group">
+                    <img class="h-12 w-auto transition-transform duration-300 group-hover:scale-105" src="Ascender icon.png" alt="Logo Ascender" onerror="this.src='https://placehold.co/48x48/2E4B43/FDFBF8?text=A'">
+                    <span class="text-2xl font-bold text-brand-green tracking-tight">Ascender</span>
                 </a>
-                <a href="#precio" class="hidden sm:inline-block bg-brand-green text-white font-semibold px-6 py-3 rounded-full hover:bg-brand-green-dark transition-colors duration-300 shadow-lg shadow-green-900/20">
-                    Reservar Ahora
-                </a>
+
+                <!-- CTA Header -->
+                <div class="flex items-center gap-4">
+                    <a href="#qualifying" class="hidden md:inline-block text-gray-600 hover:text-brand-green font-medium transition-colors">
+                        Ver Preview
+                    </a>
+                    <a href="#precio" class="bg-brand-green text-white text-sm sm:text-base font-semibold px-6 py-2.5 rounded-full hover:bg-brand-dark transition-all duration-300 shadow-lg shadow-brand-green/20 hover:scale-105">
+                        Asegurar mi Lugar
+                    </a>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- ========== MAIN CONTENT ========== -->
     <main>
+        <!-- ========== HERO SECTION (La Promesa - Módulo 5) ========== -->
+        <section class="relative pt-16 pb-24 lg:pt-24 overflow-hidden">
+            <!-- Elemento decorativo de fondo -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none opacity-40">
+                <div class="absolute top-20 left-10 w-72 h-72 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+                <div class="absolute top-20 right-10 w-72 h-72 bg-yellow-100 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+            </div>
 
-        <!-- ========== HERO SECTION ========== -->
-        <section id="hero" class="py-20 md:py-32">
-            <div class="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center relative z-10">
                 <div class="reveal">
-                    <h1 class="text-4xl md:text-6xl font-extrabold brand-green leading-tight tracking-tighter">
-                        Todo lo que sabes, vendélo.
-                        <span class="block bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-green-800">Te ayudamos a crear o escalar tu Marca Personal.</span>
+                    <span class="inline-block py-1 px-3 rounded-full bg-green-100 text-brand-green text-xs font-bold tracking-widest uppercase mb-4 border border-green-200">
+                        🚀 Dejá de ser invisible
+                    </span>
+                    <h1 class="text-5xl md:text-7xl font-extrabold text-brand-green leading-tight tracking-tight mb-6">
+                        Tu conocimiento vale oro. <br>
+                        <span class="text-gradient">Pero nadie te enseñó a venderlo.</span>
                     </h1>
-                    <p class="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-gray-600">
-                        "Ascender" es una guía completa que te va a enseñar a pasar de no tener propósito y estar perdido, a tener tu propia marca personal y vivir de ella.
+                    <p class="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-600 leading-relaxed">
+                        Te ayudamos a pasar del caos mental y la falta de rumbo a tener una <span class="font-bold text-brand-green">Marca Personal que facture +10k/mes</span>. Sin gurús, sin humo, y con estrategias que funcionan hoy.
                     </p>
                 </div>
-                
-                <div class="mt-12 max-w-4xl mx-auto reveal">
-     <div class="video-container">
-         <iframe 
-             src="https://www.youtube.com/embed/W-MuIfSHZrw?autoplay=1&mute=1" 
-             title="Video de presentación de Ascender" 
-             frameborder="0" 
-             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-             allowfullscreen>
-         </iframe>
-     </div>
-                </div>
-                
 
-                <div class="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 reveal">
-                    <!-- Enlace externo con atributos de seguridad y UX -->
-                    <a href="https://unlock.ascender.uno/buy/fd49f8e6-cab5-4027-96e0-101c11b435e7" class="w-full sm:w-auto bg-brand-green text-white font-bold text-lg px-10 py-5 rounded-full hover:bg-brand-green-dark transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-green-900/30">
-                        SÍ, QUIERO RESERVAR MI LUGAR
+                <!-- VSL (Video Sales Letter) - Clave para el funnel Delta -->
+                <div class="mt-12 max-w-4xl mx-auto reveal delay-100">
+                    <div class="video-wrapper bg-gray-900">
+                        <iframe 
+                            src="https://www.youtube.com/embed/W-MuIfSHZrw?autoplay=1&mute=1&rel=0&modestbranding=1" 
+                            title="Video VSL Ascender" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p class="mt-3 text-sm text-gray-400 italic">👆 Mirá el video para entender por qué tu negocio está estancado.</p>
+                </div>
+
+                <!-- CTAs Hero -->
+                <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4 reveal delay-200">
+                    <a href="https://unlock.ascender.uno/buy/fd49f8e6-cab5-4027-96e0-101c11b435e7" class="w-full sm:w-auto bg-brand-green text-white font-bold text-lg px-8 py-4 rounded-full hover:bg-brand-dark transition-all duration-300 shadow-xl shadow-brand-green/30 hover:-translate-y-1">
+                        SÍ, QUIERO ENTRAR AHORA
                     </a>
-                    <a href="#qualifying" class="w-full sm:w-auto bg-gray-200/80 text-gray-800 font-semibold px-8 py-4 rounded-full hover:bg-gray-300/80 transition-colors duration-300">
-                        Ver Preview
+                    <a href="#qualifying" class="w-full sm:w-auto bg-white text-gray-700 border border-gray-300 font-semibold px-8 py-4 rounded-full hover:bg-gray-50 transition-colors duration-300">
+                        Quiero ver la Preview Gratis
                     </a>
-                </div>
-                <p class="mt-4 text-sm text-gray-500 font-medium reveal">Lanzamiento oficial de la camada: 1 de Noviembre.
-                    <br>cupos de reserva: 100.
-                </p>
-            </div>
-        </section>
-
-        <!-- ========== BONUSES / WHAT YOU GET SECTION ========== -->
-        <section id="beneficios" class="py-20 md:py-28 bg-white rounded-t-3xl md:rounded-t-[4rem]">
-            <div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
-                <div class="text-center max-w-3xl mx-auto reveal">
-                    <h2 class="text-3xl md:text-5xl font-bold brand-green">Todo lo que obtenés con <span>Ascender</span></h2>
-                    <p class="mt-4 text-lg text-gray-600">Vas a recibir acceso a un ecosistema completo de herramientas, conocimiento y comunidad valorado en más de $870 USD. Todo diseñado para vos.</p>
-                </div>
-
-                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Cards de Beneficios -->
-                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/80 reveal">
-                        <div class="flex items-center justify-center h-16 w-16 bg-green-100 rounded-2xl">
-                            <i data-feather="users" class="brand-green"></i>
-                        </div>
-                        <h3 class="mt-6 text-xl font-bold brand-green">Comunidad Privada</h3>
-                        <p class="mt-2 text-gray-600">Acceso a Discord para networking, encontrar clientes y socios estratégicos.</p>
-                        <p class="mt-4 text-lg font-semibold brand-green">Valor: <span class="line-through text-gray-400">$100</span></p>
-                    </div>
-                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/80 reveal">
-                        <div class="flex items-center justify-center h-16 w-16 bg-green-100 rounded-2xl">
-                            <i data-feather="cpu" class="brand-green"></i>
-                        </div>
-                        <h3 class="mt-6 text-xl font-bold brand-green">IAs Premium</h3>
-                        <p class="mt-2 text-gray-600">Herramientas de inteligencia artificial para que puedas apalancarte de ellas.</p>
-                        <p class="mt-4 text-lg font-semibold brand-green">Valor: <span class="line-through text-gray-400">$150</span></p>
-                    </div>
-                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/80 reveal">
-                        <div class="flex items-center justify-center h-16 w-16 bg-green-100 rounded-2xl">
-                            <i data-feather="film" class="brand-green"></i>
-                        </div>
-                        <h3 class="mt-6 text-xl font-bold brand-green">+10 Cursos Explicativos</h3>
-                        <p class="mt-2 text-gray-600">Videos extra por módulo para profundizar en tu entendimiento y que te lleves la mejor experiencia.</p>
-                        <p class="mt-4 text-lg font-semibold brand-green">Valor: <span class="line-through text-gray-400">$200</span></p>
-                    </div>
-                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/80 reveal">
-                        <div class="flex items-center justify-center h-16 w-16 bg-green-100 rounded-2xl">
-                            <i data-feather="mic" class="brand-green"></i>
-                        </div>
-                        <h3 class="mt-6 text-xl font-bold brand-green">Podcast de IA</h3>
-                        <p class="mt-2 text-gray-600">Resumen de Modulos y Submodulos con AI de Podcast: Vas a poder escuchar los modulos mientras haces otra cosa</p>
-                        <p class="mt-4 text-lg font-semibold brand-green">Valor: <span class="line-through text-gray-400">$120</span></p>
-                    </div>
-                    <div class="bg-[#FDFBF8] p-8 rounded-3xl border border-gray-200/80 reveal">
-                        <div class="flex items-center justify-center h-16 w-16 bg-green-100 rounded-2xl">
-                            <i data-feather="layers" class="brand-green"></i>
-                        </div>
-                        <h3 class="mt-6 text-xl font-bold brand-green">+9 Módulos Completos</h3>
-                        <p class="mt-2 text-gray-600">El núcleo del programa, desde mentalidad hasta cierre de ventas y escalado.</p>
-                        <p class="mt-4 text-lg font-semibold brand-green">Valor: <span class="line-through text-gray-400">$300</span></p>
-                    </div>
-                    <div class="bg-brand-green text-white p-8 rounded-3xl border border-gray-200/80 reveal flex flex-col justify-center items-center text-center">
-                        <i data-feather="gift" class="w-12 h-12"></i>
-                        <h3 class="mt-6 text-2xl font-bold">Acceso Total en Notion</h3>
-                        <p class="mt-2">Todo este contenido y mas sorpresas estarán disponibles en Notion</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- ========== PRICING / FINAL CTA SECTION ========== -->
-        <section id="precio" class="py-20 md:py-28">
-            <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
-                <div class="bg-white rounded-3xl shadow-2xl shadow-gray-300/40 p-8 md:p-12 text-center border border-gray-200/50 reveal">
-                    <h2 class="text-3xl md:text-5xl font-bold brand-green">Reserva YA cupo a <span class="italic">Ascender</span></h2>
-                    <p class="mt-4 text-lg text-gray-600">Asegurá tu lugar ya por un precio de reserva único.</p>
-                    
-                    <div class="my-10">
-                        <p class="text-lg text-gray-500">Precio de lanzamiento: <span class="line-through">$27,99 USD</span></p>
-                        <p class="text-6xl md:text-8xl font-extrabold brand-green my-2">$23,99 <span class="text-2xl md:text-3xl font-medium text-gray-500">USD</span></p>
-                        <p class="font-semibold text-lg text-green-700">Oferta de reserva por tiempo limitado</p>
-                    </div>
-
-                    <a href="https://unlock.ascender.uno/buy/fd49f8e6-cab5-4027-96e0-101c11b435e7" target="_blank" rel="noopener noreferrer" class="w-full max-w-md mx-auto block bg-brand-green text-white font-bold text-lg px-10 py-5 rounded-full hover:bg-brand-green-dark transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-green-900/30">
-                        RESERVAR YA Y AHORRAR
-                    </a>
-                    <p class="mt-6 text-sm text-gray-500">Pago 100% seguro. Acceso completo el 1 de Noviembre.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ========== MODULES SECTION ========== -->
-        <section id="modulos" class="py-20 md:py-28 bg-white">
-            <div class="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12">
-                <div class="text-center max-w-3xl mx-auto reveal">
-                    <h2 class="text-3xl md:text-5xl font-bold brand-green leading-tight">El Camino para Ascender: <br><span class="block bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-green-800 mt-2">Estos son los Módulos</span></h2>
-                    <p class="mt-4 text-lg text-gray-600">Un plan de estudios estructurado para llevarte desde cero a tu marca personal. (¡Haz clic en las tarjetas para ver el detalle!)</p>
                 </div>
                 
-                <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-                    <!-- Las tarjetas ahora son botones para mejorar la accesibilidad y semántica -->
-                    <!-- Se eliminó el onclick en línea, la lógica ahora está en el script -->
-                    <button class="module-card collapsible-container bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal text-left">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
-                                    <span class="text-xl lg:text-2xl font-bold brand-green">01</span>
-                                </div>
-                                <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 1: Decisión</h3>
-                            </div>
-                            <i data-feather="chevron-down" class="collapsible-icon h-6 w-6 text-green-700 flex-shrink-0 mt-1"></i>
-                        </div>
-                        <div class="collapsible-content">
-                            <p class="mt-4 text-gray-600 leading-relaxed">Explico la historia detrás de Ascender, hablamos sobre la mentalidad que aborda tener un negocio y vamos a crear un propósito juntos asi dejas de procrastinar.</p>
-                        </div>
-                    </button>
-                    
-                    <button class="module-card collapsible-container bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal text-left">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
-                                    <span class="text-xl lg:text-2xl font-bold brand-green">02</span>
-                                </div>
-                                <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 2: Fundaciones</h3>
-                            </div>
-                            <i data-feather="chevron-down" class="collapsible-icon h-6 w-6 text-green-700 flex-shrink-0 mt-1"></i>
-                        </div>
-                        <div class="collapsible-content">
-                            <p class="mt-4 text-gray-600 leading-relaxed">Entendemos los fundamentos para empezar una marca personal tomando acción y riesgos que nos llevarán hasta nuestra meta. Entendemos nuestro sueño y lo visualizamos. </p>
-                        </div>
-                    </button>
-
-                    <button class="module-card collapsible-container bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal text-left">
-                        <div class="flex justify-between items-start">
-                             <div>
-                                <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
-                                    <span class="text-xl lg:text-2xl font-bold brand-green">03</span>
-                                </div>
-                                <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 3: Nicho</h3>
-                            </div>
-                            <i data-feather="chevron-down" class="collapsible-icon h-6 w-6 text-green-700 flex-shrink-0 mt-1"></i>
-                        </div>
-                        <div class="collapsible-content">
-                            <p class="mt-4 text-gray-600 leading-relaxed">En ves de gritar como loco, te explico y te muestro como podes hablarle a las personas correctas pero esta ves hablando bajo y con autoridad.</p>
-                        </div>
-                    </button>
-
-                    <button class="module-card collapsible-container bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal text-left">
-                        <div class="flex justify-between items-start">
-                             <div>
-                                <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
-                                    <span class="text-xl lg:text-2xl font-bold brand-green">04</span>
-                                </div>
-                                <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 4: Servicios</h3>
-                            </div>
-                            <i data-feather="chevron-down" class="collapsible-icon h-6 w-6 text-green-700 flex-shrink-0 mt-1"></i>
-                        </div>
-                        <div class="collapsible-content">
-                            <p class="mt-4 text-gray-600 leading-relaxed">Empaquetamos tu conocimiento de manera clave para escalar de la mejor manera posible adaptado a donde estas hoy a donde querés estar mañana..</p>
-                        </div>
-                    </button>
-
-                    <button class="module-card collapsible-container bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal text-left">
-                        <div class="flex justify-between items-start">
-                             <div>
-                                <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
-                                    <span class="text-xl lg:text-2xl font-bold brand-green">05</span>
-                                </div>
-                                <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 5: Offers</h3>
-                            </div>
-                            <i data-feather="chevron-down" class="collapsible-icon h-6 w-6 text-green-700 flex-shrink-0 mt-1"></i>
-                        </div>
-                        <div class="collapsible-content">
-                            <p class="mt-4 text-gray-600 leading-relaxed">Te explico como ofrecer tus servicios conviertiendolos en transformaciones reales para que nadie pueda decirte que no</p>
-                        </div>
-                    </button>
-
-                    <button class="module-card collapsible-container bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal text-left">
-                        <div class="flex justify-between items-start">
-                             <div>
-                                <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
-                                    <span class="text-xl lg:text-2xl font-bold brand-green">06</span>
-                                </div>
-                                <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 6: Contenido</h3>
-                            </div>
-                            <i data-feather="chevron-down" class="collapsible-icon h-6 w-6 text-green-700 flex-shrink-0 mt-1"></i>
-                        </div>
-                        <div class="collapsible-content">
-                            <p class="mt-4 text-gray-600 leading-relaxed">Llegue a hacer +100 Millones de visualizaciones en el mes y te explico los diferentes +10 tipos de contenido que te convendría subir explicando como guionar, grabar, editar, etc.</p>
-                        </div>
-                    </button>
-
-                    <button class="module-card collapsible-container bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal text-left">
-                        <div class="flex justify-between items-start">
-                             <div>
-                                <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
-                                    <span class="text-xl lg:text-2xl font-bold brand-green">07</span>
-                                </div>
-                                <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 7: Prospección</h3>
-                            </div>
-                            <i data-feather="chevron-down" class="collapsible-icon h-6 w-6 text-green-700 flex-shrink-0 mt-1"></i>
-                        </div>
-                        <div class="collapsible-content">
-                            <p class="mt-4 text-gray-600 leading-relaxed">Te explico desde como obtener tu primer cliente, hasta como convertir tu audiencia en leads dominando el arte de vender sin vender.</p>
-                        </div>
-                    </button>
-
-                    <button class="module-card collapsible-container bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal text-left">
-                        <div class="flex justify-between items-start">
-                             <div>
-                                <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
-                                    <span class="text-xl lg:text-2xl font-bold brand-green">08</span>
-                                </div>
-                                <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 8: Embudos</h3>
-                            </div>
-                            <i data-feather="chevron-down" class="collapsible-icon h-6 w-6 text-green-700 flex-shrink-0 mt-1"></i>
-                        </div>
-                        <div class="collapsible-content">
-                            <p class="mt-4 text-gray-600 leading-relaxed">Te explico como diseñar sistemas automáticos para que puedas filtrar tu audiencia y monetizarla dependiendo tu tipo de oferta y servicio.</p>
-                        </div>
-                    </button>
-
-                    <button class="module-card collapsible-container bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal text-left">
-                        <div class="flex justify-between items-start">
-                             <div>
-                                <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
-                                    <span class="text-xl lg:text-2xl font-bold brand-green">09</span>
-                                </div>
-                                <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 9: Sesgos y Estrategias (SesEst)</h3>
-                            </div>
-                            <i data-feather="chevron-down" class="collapsible-icon h-6 w-6 text-green-700 flex-shrink-0 mt-1"></i>
-                        </div>
-                        <div class="collapsible-content">
-                            <p class="mt-4 text-gray-600 leading-relaxed">Te ayudo a multiplicar la tasa de cierre entendiendo el uso de sesgos y te doy unos tips para mejorar todo tu negocio con estrategias de Marketing.</p>
-                        </div>
-                    </button>
-                    
-                    <button class="module-card collapsible-container bg-[#FDFBF8] p-5 lg:p-8 rounded-3xl border border-gray-200/60 shadow-lg shadow-gray-300/20 reveal sm:col-start-1 lg:col-start-2 text-left">
-                        <div class="flex justify-between items-start">
-                             <div>
-                                <div class="flex items-center justify-center h-12 w-12 lg:h-14 lg:w-14 bg-white border border-gray-200/80 rounded-2xl mb-4 shadow-sm">
-                                    <span class="text-xl lg:text-2xl font-bold brand-green">10</span>
-                                </div>
-                                <h3 class="text-lg lg:text-xl font-bold brand-green">Módulo 10: Cierre y Ascender</h3>
-                            </div>
-                            <i data-feather="chevron-down" class="collapsible-icon h-6 w-6 text-green-700 flex-shrink-0 mt-1"></i>
-                        </div>
-                        <div class="collapsible-content">
-                            <p class="mt-4 text-gray-600 leading-relaxed">Entendemos que hacer despues del cierre y entendemos los conceptos fundamentales para escalar a largo plazo: Operational Drag e inversiones.</p>
-                        </div>
-                    </button>
+                <div class="mt-6 flex justify-center items-center gap-2 text-sm text-gray-500 font-medium reveal">
+                    <span class="flex items-center text-green-600"><i data-feather="check-circle" class="w-4 h-4 mr-1"></i> 100% Garantía de Calidad</span>
+                    <span class="mx-2">•</span>
+                    <span>Lanzamiento: 1 de Noviembre</span>
                 </div>
             </div>
         </section>
 
-        <!-- ========== ABOUT US SECTION ========== -->
-        <section class="py-20 md:py-28">
-            <div class="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12">
-                 <div class="text-center max-w-3xl mx-auto reveal">
-                    <h2 class="text-3xl md:text-5xl font-bold brand-green">Creado por Expertos</h2>
-                    <p class="mt-4 text-lg text-gray-600">Nos hemos unido para combinar años de experiencia, ventas y creación de marcas para darte un infoproducto de completo valor.</p>
+        <!-- ========== LA PILA DE VALOR (Bonos - Módulo 5.5) ========== -->
+        <!-- Acá aplicamos el "Stack" para que el precio parezca ridículo -->
+        <section id="beneficios" class="py-20 bg-brand-light/30 rounded-t-[3rem] border-t border-gray-100">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+                <div class="text-center max-w-3xl mx-auto reveal mb-16">
+                    <h2 class="text-3xl md:text-5xl font-bold text-brand-green">No es solo un curso. <br> <span class="text-green-600">Es todo un ecosistema.</span></h2>
+                    <p class="mt-4 text-lg text-gray-600">Mirá todo lo que te llevás si entrás ahora. Aplicamos la <span class="font-semibold">Ley del Valor Desproporcionado</span>.</p>
                 </div>
-                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
-                    <div class="text-center reveal">
-                        <!-- Imagen con lazy loading y fallback por si falla la carga -->
-                        <img src="juanbondareprofilephoto.jpg" 
-                             alt="Retrato de Juan Bautista Bondare" 
-                             class="w-48 h-48 mx-auto rounded-full shadow-lg object-cover" 
-                             loading="lazy" 
-                             onerror="this.onerror=null;this.src='https://placehold.co/400x400/2E4B43/FDFBF8?text=Error';">
-                        <h3 class="mt-6 text-2xl font-bold brand-green">Juan Bautista Bondare</h3>
-                        <p class="mt-2 text-gray-600">Content Specialist, editor de videos, director de cortos profesional y founder @juanbondare</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Item 1 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-card border border-gray-100 hover:border-brand-green/30 transition-all hover:shadow-lg reveal">
+                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-brand-green mb-4">
+                            <i data-feather="users"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-green">Comunidad Privada (Discord)</h3>
+                        <p class="text-gray-600 text-sm mt-2">No vas a estar solo. Networking real, socios y gente en la misma que vos.</p>
+                        <div class="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
+                            <span class="text-xs text-gray-400 uppercase font-bold">Valor Real</span>
+                            <span class="text-brand-green font-bold text-lg">$100 USD</span>
+                        </div>
                     </div>
-                    <div class="text-center reveal">
-                        <!-- Se reemplazó la imagen local por un placeholder robusto -->
-                        <img src="IMG_9724.JPG" 
-                             alt="Retrato de Juan Manuel Merodio" 
-                             class="w-48 h-48 mx-auto rounded-full shadow-lg object-cover" 
-                             loading="lazy" 
-                             onerror="this.onerror=null;this.src='https://placehold.co/400x400/2E4B43/FDFBF8?text=Error';">
-                        <h3 class="mt-6 text-2xl font-bold brand-green">Juan Manuel Merodio</h3>
-                        <p class="mt-2 text-gray-600">Experto en Ventas y creador del sistema de ventas y automatizaciones Delta</p>
+
+                    <!-- Item 2 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-card border border-gray-100 hover:border-brand-green/30 transition-all hover:shadow-lg reveal delay-75">
+                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-brand-green mb-4">
+                            <i data-feather="cpu"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-green">Pack de IAs Premium</h3>
+                        <p class="text-gray-600 text-sm mt-2">Automatizá lo aburrido. Prompts y herramientas para trabajar menos y ganar más.</p>
+                        <div class="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
+                            <span class="text-xs text-gray-400 uppercase font-bold">Valor Real</span>
+                            <span class="text-brand-green font-bold text-lg">$150 USD</span>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-card border border-gray-100 hover:border-brand-green/30 transition-all hover:shadow-lg reveal delay-100">
+                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-brand-green mb-4">
+                            <i data-feather="layers"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-green">Los 10 Módulos de Ascender</h3>
+                        <p class="text-gray-600 text-sm mt-2">El sistema paso a paso. Desde mentalidad hasta cierre de ventas high-ticket.</p>
+                        <div class="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
+                            <span class="text-xs text-gray-400 uppercase font-bold">Valor Real</span>
+                            <span class="text-brand-green font-bold text-lg">$300 USD</span>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-card border border-gray-100 hover:border-brand-green/30 transition-all hover:shadow-lg reveal">
+                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-brand-green mb-4">
+                            <i data-feather="mic"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-green">Podcast Audio-Resúmenes</h3>
+                        <p class="text-gray-600 text-sm mt-2">¿No tenés tiempo? Escuchá los módulos mientras entrenás o manejás.</p>
+                        <div class="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
+                            <span class="text-xs text-gray-400 uppercase font-bold">Valor Real</span>
+                            <span class="text-brand-green font-bold text-lg">$120 USD</span>
+                        </div>
+                    </div>
+
+                     <!-- Item 5 -->
+                     <div class="bg-white p-6 rounded-2xl shadow-card border border-gray-100 hover:border-brand-green/30 transition-all hover:shadow-lg reveal delay-75">
+                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-brand-green mb-4">
+                            <i data-feather="film"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-green">Masterclasses Extra</h3>
+                        <p class="text-gray-600 text-sm mt-2">Videos técnicos profundizando en edición, funnels y estrategia.</p>
+                        <div class="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
+                            <span class="text-xs text-gray-400 uppercase font-bold">Valor Real</span>
+                            <span class="text-brand-green font-bold text-lg">$200 USD</span>
+                        </div>
+                    </div>
+
+                    <!-- Item Total (El Anclaje) -->
+                    <div class="bg-brand-green text-white p-6 rounded-2xl shadow-xl flex flex-col justify-center items-center text-center transform scale-105 border-2 border-green-400/30 reveal delay-150 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-yellow-400 text-black text-xs font-bold px-2 py-1">BONUS</div>
+                        <i data-feather="gift" class="w-10 h-10 mb-2"></i>
+                        <h3 class="text-2xl font-bold">Acceso Total Notion</h3>
+                        <p class="text-green-100 text-sm mt-1">Tu segundo cerebro digital.</p>
+                        <div class="mt-6 w-full pt-4 border-t border-green-500/50">
+                            <p class="text-sm text-green-200">Valor Total de Todo:</p>
+                            <p class="text-3xl font-extrabold line-through text-green-300 opacity-60">$870 USD</p>
+                            <p class="text-white text-xs mt-1">Pero hoy no pagás eso...</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <!-- ========== QUALIFICATION FORM SECTION ========== -->
-        <section id="qualifying" class="py-20 md:py-28 bg-white">
-            <div class="max-w-3xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
-                <div class="reveal">
-                    <h2 class="text-3xl md:text-5xl font-bold brand-green">Si todavia tenes dudas <br><span class="block bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-green-800">Te preparamos una preview</span></h2>
-                    <p class="mt-4 text-lg text-gray-600">estamos seguros del valor que aportamos, completá con tus datos así te llevas la preview GRATIS.</p>
+
+        <!-- ========== PRICING (Psicología de Precios - Módulo 5.4) ========== -->
+        <section id="precio" class="py-20 relative">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6">
+                <div class="bg-white rounded-[2rem] shadow-2xl p-8 md:p-12 text-center border border-gray-100 reveal relative overflow-hidden">
+                    <!-- Bandera de Oferta -->
+                    <div class="absolute top-5 right-0 bg-red-500 text-white text-xs font-bold px-8 py-1 transform rotate-45 translate-x-8 shadow-md">AHORA
+                    </div>
+
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-brand-green mb-2">Reservá tu lugar en <span class="italic text-green-600">Ascender</span></h2>
+                    <p class="text-gray-500 text-lg mb-8">El precio sube en cuanto se agoten los cupos de preventa.</p>
+
+                    <div class="flex flex-col items-center justify-center my-8">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl text-gray-400 font-medium line-through decoration-red-400">$870 USD</span>
+                            <span class="bg-green-100 text-brand-green text-xs font-bold px-2 py-1 rounded">Ahorrás 94%</span>
+                        </div>
+                        <div class="flex items-start mt-2">
+                            <span class="text-4xl font-bold text-brand-green mt-2">$</span>
+                            <span class="text-8xl font-black text-brand-green tracking-tighter">32</span>
+                            <div class="flex flex-col items-start mt-2 ml-1">
+                                <span class="text-4xl font-bold text-brand-green">99</span>
+                                <span class="text-gray-400 text-lg font-medium">USD</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-400 mt-2 font-medium">Pago único. Acceso de por vida a futuras actualizaciones.</p>
+                    </div>
+
+                    <a href="https://unlock.ascender.uno/buy/fd49f8e6-cab5-4027-96e0-101c11b435e7" target="_blank" class="w-full max-w-md mx-auto flex items-center justify-center gap-2 bg-brand-green text-white font-bold text-xl px-8 py-5 rounded-full hover:bg-brand-dark transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 group">
+                        <span>RESERVAR MI CUPO AHORA</span>
+                        <i data-feather="arrow-right" class="group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    
+                    <div class="mt-6 flex flex-col md:flex-row justify-center items-center gap-4 text-xs text-gray-500">
+                        <span class="flex items-center"><i data-feather="lock" class="w-3 h-3 mr-1"></i> Pago seguro vía Lemon Squeezy</span>
+                        <span class="flex items-center"><i data-feather="shield" class="w-3 h-3 mr-1"></i> Garantía de Satisfacción</span>
+                    </div>
                 </div>
-                <form id="qualify-form" class="mt-12 text-left space-y-6 reveal" novalidate>
-                    <div>
-                        <label for="instagram" class="block text-sm font-medium text-gray-700">Instagram (sin arroba)</label>
-                        <input type="text" id="instagram" name="instagram" required class="mt-1 block w-full px-4 py-3 bg-[#FDFBF8] border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
-                    </div>
-                    <div>
-                        <label for="business" class="block text-sm font-medium text-gray-700">¿Tenés negocio? Explicalo resumidamete</label>
-                        <input type="text" id="business" name="business" required class="mt-1 block w-full px-4 py-3 bg-[#FDFBF8] border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
-                    </div>
-                     <div>
-                        <label for="revenue" class="block text-sm font-medium text-gray-700">¿En que situacion estas? Así te mando la mejor versión de la preview</label>
-                         <select id="revenue" name="revenue" required class="mt-1 block w-full px-4 py-3 bg-[#FDFBF8] border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
-                             <option value="">Selecciona una opción</option>
-                             <option>Aún no genero ingresos</option>
-                             <option>Menos de $1,000/mes</option>
-                             <option>$1,000 - $5,000/mes</option>
-                             <option>$5,000 - $10,000/mes</option>
-                             <option>Más de $10,000/mes</option>
-                         </select>
-                    </div>
-                    <div>
-                        <button type="submit" id="submit-button" class="w-full bg-brand-green text-white font-bold text-lg px-10 py-4 rounded-full hover:bg-brand-green-dark transition-all duration-300 shadow-lg shadow-green-900/20 flex items-center justify-center">
-                            Obtener mi Preview GRATIS
+            </div>
+        </section>
+
+        <!-- ========== EL CAMINO (Módulos) ========== -->
+        <section id="modulos" class="py-20 bg-[#F7F5F2]">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-4xl font-bold text-brand-green">Tu Mapa de Ruta</h2>
+                    <p class="text-gray-600 mt-3">Sin relleno. Solo lo que necesitás para ir de 0 a 100.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- He mejorado los títulos para que sean más "copywriting" y menos "índice" -->
+                    
+                    <!-- Mod 1 -->
+                    <button class="module-card collapsible-container bg-white p-6 rounded-2xl border border-gray-200/50 hover:border-brand-green/30 hover:shadow-md transition-all text-left reveal">
+                        <div class="flex justify-between items-center w-full">
+                            <div class="flex items-center gap-4">
+                                <span class="text-2xl font-black text-gray-200">01</span>
+                                <h3 class="text-lg font-bold text-brand-green">La Decisión (Mentalidad)</h3>
+                            </div>
+                            <i data-feather="chevron-down" class="collapsible-icon text-gray-400"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="pt-4 text-gray-600 text-sm leading-relaxed">
+                                Rompé la parálisis. Te cuento mi historia de fracasos y cómo superé la maldición del "no sé qué hacer". Definimos tu propósito inquebrantable.
+                            </p>
+                        </div>
+                    </button>
+
+                    <!-- Mod 2 -->
+                    <button class="module-card collapsible-container bg-white p-6 rounded-2xl border border-gray-200/50 hover:border-brand-green/30 hover:shadow-md transition-all text-left reveal">
+                        <div class="flex justify-between items-center w-full">
+                            <div class="flex items-center gap-4">
+                                <span class="text-2xl font-black text-gray-200">02</span>
+                                <h3 class="text-lg font-bold text-brand-green">Fundaciones (Bases Sólidas)</h3>
+                            </div>
+                            <i data-feather="chevron-down" class="collapsible-icon text-gray-400"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="pt-4 text-gray-600 text-sm leading-relaxed">
+                                Nadie construye un edificio sobre arena. Acá instalamos los hábitos y la organización para que tu negocio no te coma la vida.
+                            </p>
+                        </div>
+                    </button>
+
+                    <!-- Mod 3 -->
+                    <button class="module-card collapsible-container bg-white p-6 rounded-2xl border border-gray-200/50 hover:border-brand-green/30 hover:shadow-md transition-all text-left reveal">
+                        <div class="flex justify-between items-center w-full">
+                            <div class="flex items-center gap-4">
+                                <span class="text-2xl font-black text-gray-200">03</span>
+                                <h3 class="text-lg font-bold text-brand-green">Nicho (Hablarle a uno)</h3>
+                            </div>
+                            <i data-feather="chevron-down" class="collapsible-icon text-gray-400"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="pt-4 text-gray-600 text-sm leading-relaxed">
+                                Dejá de gritarle a todo el mundo. Te enseño a elegir a quién hablarle para que te escuchen y te compren.
+                            </p>
+                        </div>
+                    </button>
+
+                    <!-- Mod 4 -->
+                    <button class="module-card collapsible-container bg-white p-6 rounded-2xl border border-gray-200/50 hover:border-brand-green/30 hover:shadow-md transition-all text-left reveal">
+                        <div class="flex justify-between items-center w-full">
+                            <div class="flex items-center gap-4">
+                                <span class="text-2xl font-black text-gray-200">04</span>
+                                <h3 class="text-lg font-bold text-brand-green">Servicios (Tu Vehículo)</h3>
+                            </div>
+                            <i data-feather="chevron-down" class="collapsible-icon text-gray-400"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="pt-4 text-gray-600 text-sm leading-relaxed">
+                                DFY, DIY, DWY. Empaquetamos tu conocimiento para que sea escalable y no dependas de vender tu tiempo barato.
+                            </p>
+                        </div>
+                    </button>
+
+                    <!-- Mod 5 -->
+                    <button class="module-card collapsible-container bg-white p-6 rounded-2xl border border-gray-200/50 hover:border-brand-green/30 hover:shadow-md transition-all text-left reveal">
+                        <div class="flex justify-between items-center w-full">
+                            <div class="flex items-center gap-4">
+                                <span class="text-2xl font-black text-brand-green/20">05</span>
+                                <h3 class="text-lg font-bold text-brand-green">Ofertas Irresistibles</h3>
+                            </div>
+                            <i data-feather="chevron-down" class="collapsible-icon text-gray-400"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="pt-4 text-gray-600 text-sm leading-relaxed">
+                                Hacé que decirte "NO" sea estúpido. Creamos ofertas con tanta percepción de valor que el precio pasa a segundo plano.
+                            </p>
+                        </div>
+                    </button>
+
+                    <!-- Mod 6 -->
+                    <button class="module-card collapsible-container bg-white p-6 rounded-2xl border border-gray-200/50 hover:border-brand-green/30 hover:shadow-md transition-all text-left reveal">
+                        <div class="flex justify-between items-center w-full">
+                            <div class="flex items-center gap-4">
+                                <span class="text-2xl font-black text-gray-200">06</span>
+                                <h3 class="text-lg font-bold text-brand-green">Contenido Viral</h3>
+                            </div>
+                            <i data-feather="chevron-down" class="collapsible-icon text-gray-400"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="pt-4 text-gray-600 text-sm leading-relaxed">
+                                Cómo logré +100 Millones de views. Te doy mis guiones, mi estructura de edición y cómo retener a la audiencia.
+                            </p>
+                        </div>
+                    </button>
+
+                    <!-- Mod 7 -->
+                    <button class="module-card collapsible-container bg-white p-6 rounded-2xl border border-gray-200/50 hover:border-brand-green/30 hover:shadow-md transition-all text-left reveal">
+                        <div class="flex justify-between items-center w-full">
+                            <div class="flex items-center gap-4">
+                                <span class="text-2xl font-black text-gray-200">07</span>
+                                <h3 class="text-lg font-bold text-brand-green">Setting (Vender sin vender)</h3>
+                            </div>
+                            <i data-feather="chevron-down" class="collapsible-icon text-gray-400"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="pt-4 text-gray-600 text-sm leading-relaxed">
+                                Transformá seguidores en plata. El arte de prospectar por DM sin ser un pesado y agendar llamadas de venta.
+                            </p>
+                        </div>
+                    </button>
+
+                    <!-- Mod 8 -->
+                    <button class="module-card collapsible-container bg-white p-6 rounded-2xl border border-gray-200/50 hover:border-brand-green/30 hover:shadow-md transition-all text-left reveal">
+                        <div class="flex justify-between items-center w-full">
+                            <div class="flex items-center gap-4">
+                                <span class="text-2xl font-black text-gray-200">08</span>
+                                <h3 class="text-lg font-bold text-brand-green">Embudos Automáticos</h3>
+                            </div>
+                            <i data-feather="chevron-down" class="collapsible-icon text-gray-400"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="pt-4 text-gray-600 text-sm leading-relaxed">
+                                Filtrá a los curiosos y quedate con los que pagan. Sistemas automatizados con Manychat y VSLs.
+                            </p>
+                        </div>
+                    </button>
+                    
+                    <!-- Mod 9 & 10 combinados visualmente en grid -->
+                    <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                         <button class="module-card collapsible-container bg-white p-6 rounded-2xl border border-gray-200/50 hover:border-brand-green/30 hover:shadow-md transition-all text-left reveal">
+                            <div class="flex justify-between items-center w-full">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-2xl font-black text-gray-200">09</span>
+                                    <h3 class="text-lg font-bold text-brand-green">Sesgos Psicológicos</h3>
+                                </div>
+                                <i data-feather="chevron-down" class="collapsible-icon text-gray-400"></i>
+                            </div>
+                            <div class="collapsible-content">
+                                <p class="pt-4 text-gray-600 text-sm leading-relaxed">
+                                    Hackeá la mente de tu cliente. Estrategias de marketing avanzado para multiplicar tu tasa de cierre.
+                                </p>
+                            </div>
+                        </button>
+                         <button class="module-card collapsible-container bg-white p-6 rounded-2xl border border-gray-200/50 hover:border-brand-green/30 hover:shadow-md transition-all text-left reveal">
+                            <div class="flex justify-between items-center w-full">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-2xl font-black text-gray-200">10</span>
+                                    <h3 class="text-lg font-bold text-brand-green">Cierre & Ascender</h3>
+                                </div>
+                                <i data-feather="chevron-down" class="collapsible-icon text-gray-400"></i>
+                            </div>
+                            <div class="collapsible-content">
+                                <p class="pt-4 text-gray-600 text-sm leading-relaxed">
+                                    Qué hacer después del "sí". Inversiones, Operational Drag y cómo escalar a largo plazo.
+                                </p>
+                            </div>
                         </button>
                     </div>
-                    <div id="form-error" class="hidden mt-4 p-4 bg-red-100 text-red-800 rounded-xl text-center">
-                        Por favor, completa todos los campos requeridos.
-                    </div>
-                </form>
-                <div id="form-success" class="hidden mt-8 p-4 bg-green-100 text-green-800 rounded-xl">
-                    ¡Gracias! Hemos recibido tu información. Redirigiendo...
+
                 </div>
             </div>
         </section>
 
-        <!-- ========== FAQ SECTION ========== -->
-        <section class="py-20 md:py-28">
-            <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
-                 <div class="text-center max-w-3xl mx-auto reveal">
-                    <h2 class="text-3xl md:text-5xl font-bold brand-green">Preguntas Frecuentes</h2>
-                </div>
-                <div class="mt-16 space-y-4">
-                    <!-- Cada item del acordeón es ahora un <details> para accesibilidad nativa -->
-                    <div class="accordion-item collapsible-container bg-white border border-gray-200/80 rounded-2xl reveal">
-                        <div class="accordion-item-header p-6 flex justify-between items-center cursor-pointer">
-                            <span class="text-lg font-semibold brand-green">¿Para quién es este infoproducto?</span>
-                            <div class="faq-icon collapsible-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green">
-                                <i data-feather="plus" class="w-5 h-5"></i>
-                            </div>
-                        </div>
-                        <div class="collapsible-content">
-                            <p class="p-6 pt-0 text-gray-600">Ascender está diseñado para coaches, consultores, creadores de contenido, freelancers y cualquier experto que quiera monetizar su conocimiento a través de una marca personal sólida. No importa si estás empezando de cero o ya tienes una base, el programa te llevará al siguiente nivel.</p>
+        <!-- ========== QUIEN SOY (Autoridad) ========== -->
+        <section class="py-20 bg-white">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6">
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="w-full md:w-1/2 reveal">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-brand-green rounded-3xl rotate-3 opacity-10"></div>
+                            <img src="juanbondareprofilephoto.jpg" alt="Juan Bondare" class="relative rounded-3xl shadow-xl w-full object-cover transform transition hover:-rotate-1 duration-500" onerror="this.src='https://placehold.co/400x500/2E4B43/FDFBF8?text=Juan+Bondare'">
                         </div>
                     </div>
-                     <div class="accordion-item collapsible-container bg-white border border-gray-200/80 rounded-2xl reveal">
-                        <div class="accordion-item-header p-6 flex justify-between items-center cursor-pointer">
-                            <span class="text-lg font-semibold brand-green">¿Cuándo tendré acceso al contenido?</span>
-                            <div class="faq-icon collapsible-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green">
-                                <i data-feather="plus" class="w-5 h-5"></i>
+                    <div class="w-full md:w-1/2 reveal delay-100">
+                        <h2 class="text-3xl md:text-4xl font-bold text-brand-green mb-4">Detrás de <span class="italic">Ascender</span></h2>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Juan Bautista Bondare</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            Pasé de estar quebrado, sin teléfono propio y con mi entorno en contra, a generar más de <span class="font-bold text-brand-green">500 Millones de reproducciones</span> en Instagram y vivir de mi marca personal.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed mb-8">
+                            No te voy a mentir: esto no es fácil. Pero con Juan Manuel Merodio (Experto en Ventas y Sistemas Delta) empaquetamos todo lo que nos costó años aprender para que a vos te cueste solo unas semanas.
+                        </p>
+                        <div class="flex gap-4">
+                            <div class="text-center">
+                                <span class="block text-2xl font-bold text-brand-green">+500M</span>
+                                <span class="text-xs text-gray-500 uppercase tracking-wide">Vistas</span>
                             </div>
-                        </div>
-                        <div class="collapsible-content">
-                            <p class="p-6 pt-0 text-gray-600">Al reservar tu lugar, aseguras el precio especial de preventa. Recibirás el acceso completo a todos los módulos, bonos y a la comunidad privada el día del lanzamiento oficial: 1 de Noviembre.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item collapsible-container bg-white border border-gray-200/80 rounded-2xl reveal">
-                        <div class="accordion-item-header p-6 flex justify-between items-center cursor-pointer">
-                            <span class="text-lg font-semibold brand-green">¿Qué pasa si no tengo experiencia previa?</span>
-                            <div class="faq-icon collapsible-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green">
-                                <i data-feather="plus" class="w-5 h-5"></i>
+                            <div class="w-px bg-gray-200"></div>
+                            <div class="text-center">
+                                <span class="block text-2xl font-bold text-brand-green">+3</span>
+                                <span class="text-xs text-gray-500 uppercase tracking-wide">Negocios</span>
                             </div>
-                        </div>
-                        <div class="collapsible-content">
-                            <p class="p-6 pt-0 text-gray-600">¡No hay problema! El programa está estructurado paso a paso, desde los fundamentos (Módulo 1: Decisión) hasta las estrategias más avanzadas de escalado. Te guiaremos en cada etapa del proceso.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item collapsible-container bg-white border border-gray-200/80 rounded-2xl reveal">
-                        <div class="accordion-item-header p-6 flex justify-between items-center cursor-pointer">
-                            <span class="text-lg font-semibold brand-green">¿Tendré soporte durante el programa?</span>
-                            <div class="faq-icon collapsible-icon h-8 w-8 flex items-center justify-center bg-green-100 rounded-full brand-green">
-                                <i data-feather="plus" class="w-5 h-5"></i>
-                            </div>
-                        </div>
-                        <div class="collapsible-content">
-                            <p class="p-6 pt-0 text-gray-600">Sí. Tendrás acceso a la comunidad privada de Discord, donde podrás hacer preguntas, compartir tus avances y conectar tanto con nosotros, los creadores, como con otros miembros que están en el mismo camino que tú.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- ========== FORMULARIO DE CUALIFICACIÓN (Setting - Módulo 7) ========== -->
+        <section id="qualifying" class="py-20 bg-brand-green text-white relative overflow-hidden">
+            <!-- Pattern de fondo sutil -->
+            <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center relative z-10">
+                <div class="reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">¿Todavía con dudas?</h2>
+                    <p class="text-green-100 text-lg mb-8">No te pido que me creas ciegamente. Probá una parte del sistema GRATIS.</p>
+                </div>
+
+                <form id="qualify-form" class="bg-white text-gray-800 p-8 rounded-3xl shadow-2xl max-w-lg mx-auto text-left reveal delay-100">
+                    <div class="space-y-5">
+                        <div>
+                            <label for="instagram" class="block text-sm font-bold text-gray-700 mb-1">Tu Instagram (Fundamental)</label>
+                            <input type="text" id="instagram" name="instagram" placeholder="Ej: juanbondare" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all">
+                        </div>
+                        
+                        <div>
+                            <label for="business" class="block text-sm font-bold text-gray-700 mb-1">¿De qué trata tu negocio/idea?</label>
+                            <input type="text" id="business" name="business" placeholder="Ej: Coach de fitness, Agencia, Vendo tortas..." required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all">
+                        </div>
+
+                        <div>
+                            <label for="revenue" class="block text-sm font-bold text-gray-700 mb-1">Situación Actual (Sé honesto)</label>
+                            <select id="revenue" name="revenue" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all">
+                                <option value="" disabled selected>Elegí una opción...</option>
+                                <option>Apenas empezando ($0)</option>
+                                <option>Hago algo extra ($100 - $1k)</option>
+                                <option>Ya vivo de esto ($1k - $5k)</option>
+                                <option>Quiero escalar ($5k+)</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" id="submit-button" class="w-full bg-brand-green text-white font-bold text-lg py-4 rounded-xl hover:bg-brand-dark transition-all shadow-lg transform hover:-translate-y-1 mt-4">
+                            Acceder a la Preview GRATIS
+                        </button>
+                    </div>
+
+                    <div id="form-error" class="hidden mt-4 text-red-600 text-sm text-center font-medium bg-red-50 p-2 rounded-lg"></div>
+                    <div id="form-success" class="hidden mt-4 text-green-700 text-sm text-center font-bold bg-green-50 p-2 rounded-lg">
+                        ¡Genial! Redirigiendo al contenido...
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ========== FAQ (Objeciones - Módulo 7.3) ========== -->
+        <section class="py-20 bg-[#FDFBF8]">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6">
+                <div class="text-center mb-12 reveal">
+                    <h2 class="text-3xl font-bold text-brand-green">Preguntas que seguro tenés</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- FAQ 1 -->
+                    <div class="accordion-item collapsible-container bg-white border border-gray-200 rounded-2xl reveal">
+                        <div class="accordion-item-header p-5 flex justify-between items-center cursor-pointer hover:bg-gray-50 transition">
+                            <span class="font-bold text-brand-green">¿Sirve si arranco desde cero absoluto?</span>
+                            <i data-feather="plus" class="faq-icon collapsible-icon text-gray-400"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="p-5 pt-0 text-gray-600 text-sm">Sí. De hecho, es mejor porque no traés mañas viejas. El Módulo 1 y 2 están diseñados justamente para construir tus bases, elegir tu nicho y definir tu oferta sin tener experiencia previa.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="accordion-item collapsible-container bg-white border border-gray-200 rounded-2xl reveal">
+                        <div class="accordion-item-header p-5 flex justify-between items-center cursor-pointer hover:bg-gray-50 transition">
+                            <span class="font-bold text-brand-green">¿Necesito invertir en equipos caros?</span>
+                            <i data-feather="plus" class="faq-icon collapsible-icon text-gray-400"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="p-5 pt-0 text-gray-600 text-sm">No. Yo arranqué con un Samsung A03 Core y edité a 7 FPS. En el curso te enseño a explotar lo que ya tenés. La calidad está en el mensaje, no en la cámara.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="accordion-item collapsible-container bg-white border border-gray-200 rounded-2xl reveal">
+                        <div class="accordion-item-header p-5 flex justify-between items-center cursor-pointer hover:bg-gray-50 transition">
+                            <span class="font-bold text-brand-green">¿Cuándo recibo el acceso?</span>
+                            <i data-feather="plus" class="faq-icon collapsible-icon text-gray-400"></i>
+                        </div>
+                        <div class="collapsible-content">
+                            <p class="p-5 pt-0 text-gray-600 text-sm">Es una preventa exclusiva. Asegurás el precio bajo HOY ($23.99) y el acceso se libera automáticamente el 1 de Noviembre. Si esperás a esa fecha, el precio sube.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- ========== FOOTER ========== -->
-    <footer class="bg-white">
-        <div class="max-w-7xl mx-auto py-12 px-6 sm:px-8 lg:px-12 text-center">
-            <a href="#" class="flex items-center justify-center space-x-2" aria-label="Página de inicio de Ascender">
-                 <img class="h-20 w-auto" src="Ascender icon.png" alt="Logo Ascender">
-                 <span class="text-2xl font-bold brand-green">Ascender</span>
+    <footer class="bg-white border-t border-gray-200 pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+            <a href="#" class="inline-flex items-center gap-2 mb-4">
+                <img class="h-10 w-auto grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all" src="Ascender icon.png" alt="Logo Ascender" onerror="this.src='https://placehold.co/40x40/2E4B43/FDFBF8?text=A'">
+                <span class="text-xl font-bold text-gray-400">Ascender</span>
             </a>
-            <p class="mt-4 text-gray-500">&copy; 2025 Ascender. Todos los derechos reservados.</p>
-             <p class="text-sm text-gray-400 mt-2">Creado por Juan Bautista Bondare y Juan Manuel Merodio</p>
+            <p class="text-sm text-gray-400 mb-4">&copy; 2025 Ascender. Creado con estrategia y café.</p>
+            <div class="flex justify-center gap-6 text-sm text-gray-400">
+                <a href="#" class="hover:text-brand-green transition">Términos</a>
+                <a href="#" class="hover:text-brand-green transition">Privacidad</a>
+            </div>
         </div>
     </footer>
 
-    <!-- Scripts movidos al final del body con 'defer' para no bloquear el renderizado -->
-    <script src="https://unpkg.com/feather-icons" defer></script>
-    
-    <!-- Script principal con toda la lógica centralizada -->
+    <!-- Scripts -->
+    <script src="https://unpkg.com/feather-icons"></script>
     <script>
-        // Envolvemos todo en una IIFE (Immediately Invoked Function Expression)
-        // para no contaminar el scope global y mantener el código encapsulado.
-        (() => {
-            // Espera a que el DOM esté completamente cargado para ejecutar el script.
-            document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializar iconos
+            feather.replace();
 
-                /**
-                 * ------------------------------------------------------------------
-                 * 1. INICIALIZADOR DE ICONOS
-                 * ------------------------------------------------------------------
-                 */
-                // Inicializa Feather Icons de forma segura, verificando si la librería cargó.
-                try {
-                    if (typeof feather !== 'undefined') {
-                        feather.replace();
+            // Lógica de Scroll Reveal
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal-visible');
+                        revealObserver.unobserve(entry.target);
                     }
-                } catch (e) {
-                    console.error("Error al inicializar Feather Icons:", e);
-                }
-
-                /**
-                 * ------------------------------------------------------------------
-                 * 2. ANIMACIONES EN SCROLL (REVEAL)
-                 * ------------------------------------------------------------------
-                 * Usa Intersection Observer para una performance óptima al revelar
-                 * elementos cuando entran en el viewport.
-                 */
-                const revealObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('reveal-visible');
-                            observer.unobserve(entry.target); // Dejar de observar una vez visible
-                        }
-                    });
-                }, { threshold: 0.1 });
-
-                document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-                const collapsibleTriggers = document.querySelectorAll('.module-card, .accordion-item-header');
-
-                collapsibleTriggers.forEach(trigger => {
-                    trigger.addEventListener('click', () => {
-                        const container = trigger.closest('.collapsible-container');
-                        if (!container) return; // Salida temprana si no hay contenedor
-
-                        const wasActive = container.classList.contains('active');
-                        const parentGroup = container.parentElement;
-
-                        // Cierra todos los elementos en el mismo grupo
-                        if (parentGroup) {
-                            parentGroup.querySelectorAll('.collapsible-container.active').forEach(activeItem => {
-                                if (activeItem !== container) {
-                                    activeItem.classList.remove('active');
-                                }
-                            });
-                        }
-                        
-                        // Alterna el estado del elemento clickeado
-                        container.classList.toggle('active');
-                    });
                 });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => revealObserver.observe(el));
 
-                const qualifyForm = document.getElementById('qualify-form');
-                if (!qualifyForm) return; // Si el form no existe, no continuamos
+            // Lógica de Acordeones
+            document.querySelectorAll('.collapsible-container').forEach(container => {
+                const header = container.querySelector('.flex.justify-between') || container.querySelector('.accordion-item-header');
+                
+                header.addEventListener('click', () => {
+                    const isActive = container.classList.contains('active');
+                    
+                    // Cerrar otros si es necesario (opcional, para acordeón estricto)
+                    // document.querySelectorAll('.collapsible-container.active').forEach(c => c.classList.remove('active'));
 
-                // Cache de elementos del DOM para mejor rendimiento
-                const submitButton = document.getElementById('submit-button');
-                const formError = document.getElementById('form-error');
-                const formSuccess = document.getElementById('form-success');
-                const requiredFields = qualifyForm.querySelectorAll('[required]');
-                const scriptURL = 'https://script.google.com/macros/s/AKfycbxaLMCCrIjieASrod1YSdCBwyLfublnP-I_ld_k0gc2iyBbVAG002bL-WkzS9TF6cI/exec';
-                const notionURL = 'https://ascenderpreview.super.site';
-
-                qualifyForm.addEventListener('submit', (event) => {
-                    event.preventDefault();
-
-                    // --- Validación de campos requeridos ---
-                    let isValid = true;
-                    formError.classList.add('hidden');
-                    requiredFields.forEach(field => {
-                        field.style.borderColor = ''; // Resetea estilos de error
-                        if (!field.value.trim()) {
-                            isValid = false;
-                            field.style.borderColor = '#EF4444'; // Borde rojo para indicar error
-                        }
-                    });
-
-                    if (!isValid) {
-                        formError.textContent = 'Por favor, completa todos los campos.';
-                        formError.classList.remove('hidden');
-                        return;
+                    if (!isActive) {
+                        container.classList.add('active');
+                    } else {
+                        container.classList.remove('active');
                     }
-
-                    // --- Estado de Carga (Feedback visual para el usuario) ---
-                    const originalButtonHTML = submitButton.innerHTML;
-                    submitButton.disabled = true;
-                    submitButton.innerHTML = `
-                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        Enviando...
-                    `;
-
-                    // --- Envío de datos con Fetch y FormData ---
-                    fetch(scriptURL, { method: 'POST', body: new FormData(qualifyForm) })
-                        .then(response => {
-                            if (!response.ok) throw new Error(`Error de red: ${response.status}`);
-                            return response.json();
-                        })
-                        .then(data => {
-                            if (data.result !== 'success') throw new Error(data.message || 'Error en la respuesta del servidor.');
-                            
-                            // Éxito: Oculta el formulario y muestra mensaje de éxito
-                            qualifyForm.style.display = 'none';
-                            formSuccess.textContent = `¡Gracias! Redirigiendo a la preview...`;
-                            formSuccess.classList.remove('hidden');
-                            
-                            // Redirige al usuario después de un momento
-                            setTimeout(() => { window.location.href = notionURL; }, 2000);
-                        })
-                        .catch(error => {
-                            console.error('Error al enviar el formulario:', error);
-                            formError.textContent = `Hubo un problema: ${error.message}. Intenta de nuevo.`;
-                            formError.classList.remove('hidden');
-                             // Restaura el botón solo si hay un error
-                            submitButton.disabled = false;
-                            submitButton.innerHTML = originalButtonHTML;
-                        });
                 });
             });
-        })();
+
+            // Lógica del Formulario (Simulación)
+            const form = document.getElementById('qualify-form');
+            if(form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const btn = document.getElementById('submit-button');
+                    const originalText = btn.innerText;
+                    
+                    // Estado de carga
+                    btn.disabled = true;
+                    btn.innerHTML = `<span class="animate-pulse">Procesando...</span>`;
+                    
+                    // Simulación de envío a Google Script (usar tu URL real aquí)
+                    const scriptURL = 'https://script.google.com/macros/s/AKfycbxaLMCCrIjieASrod1YSdCBwyLfublnP-I_ld_k0gc2iyBbVAG002bL-WkzS9TF6cI/exec';
+                    
+                    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                    .then(response => {
+                        document.getElementById('form-success').classList.remove('hidden');
+                        form.reset();
+                        setTimeout(() => {
+                            window.location.href = 'https://ascenderpreview.super.site';
+                        }, 1500);
+                    })
+                    .catch(error => {
+                        document.getElementById('form-error').innerText = "Error de conexión. Intentá de nuevo.";
+                        document.getElementById('form-error').classList.remove('hidden');
+                        btn.disabled = false;
+                        btn.innerText = originalText;
+                    });
+                });
+            }
+        });
     </script>
 </body>
 </html>
-
