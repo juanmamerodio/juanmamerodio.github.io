@@ -735,6 +735,7 @@ src="https://www.facebook.com/tr?id=834765242879520&ev=PageView&noscript=1"
                     .then(response => {
                         document.getElementById('form-success').classList.remove('hidden');
                         form.reset();
+                        fbq('track', 'Lead');
                         setTimeout(() => {
                             window.location.href = 'https://ascenderpreview.super.site';
                         }, 1500);
